@@ -1,3 +1,5 @@
+"use client";
+
 import { stats } from "@/data/site";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";

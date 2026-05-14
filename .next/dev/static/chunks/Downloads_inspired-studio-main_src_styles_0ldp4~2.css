@@ -1,0 +1,275 @@
+/* [project]/Downloads/inspired-studio-main/src/styles.css [app-client] (css) */
+@source "./**/*.tsx";
+
+@theme {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ember: var(--ember);
+  --color-bone: var(--bone);
+  --color-gold: var(--gold);
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+}
+
+:root {
+  --radius: .25rem;
+  --background: #0a0705;
+  --foreground: #f0eae0;
+  --card: #110c09;
+  --card-foreground: #f0eae0;
+  --popover: #110c09;
+  --popover-foreground: #f0eae0;
+  --primary: #f0eae0;
+  --primary-foreground: #0a0705;
+  --secondary: #201914;
+  --secondary-foreground: #f0eae0;
+  --muted: #1a1511;
+  --muted-foreground: #8e8479;
+  --accent: #e65f2a;
+  --accent-foreground: #0a0705;
+  --destructive: #d40924;
+  --destructive-foreground: #f8f8f8;
+  --border: #f0eae01f;
+  --input: #f0eae026;
+  --ring: #e65f2a;
+  --ember: #e65f2a;
+  --bone: #f4ead9;
+  --gold: #d4af37;
+  --gold-glow: #d4af374d;
+  --font-display: "Fraunces", "Times New Roman", serif;
+  --font-sans: "Inter Tight", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --hero-font-size-desktop: clamp(4rem, 8vw, 9rem);
+}
+
+@supports (color: lab(0% 0 0)) {
+  :root {
+    --background: lab(1.9768% .58151 .968593);
+    --foreground: lab(93.0816% .894964 5.67563);
+    --card: lab(3.68517% 1.10278 1.83178);
+    --card-foreground: lab(93.0816% .894964 5.67563);
+    --popover: lab(3.68517% 1.10278 1.83178);
+    --popover-foreground: lab(93.0816% .894964 5.67563);
+    --primary: lab(93.0816% .894964 5.67563);
+    --primary-foreground: lab(1.9768% .58151 .968593);
+    --secondary: lab(9.48198% 2.73063 4.99646);
+    --secondary-foreground: lab(93.0816% .894964 5.67563);
+    --muted: lab(7.19909% 2.05951 3.4455);
+    --muted-foreground: lab(55.9241% 2.4218 7.29562);
+    --accent: lab(57.9589% 51.6363 55.573);
+    --accent-foreground: lab(1.9768% .58151 .968593);
+    --destructive: lab(45.5382% 69.8881 46.2994);
+    --destructive-foreground: lab(97.68% -.0000298023 .0000119209);
+    --border: lab(93.0816% .894964 5.67563 / .12);
+    --input: lab(93.0816% .894964 5.67563 / .15);
+    --ring: lab(57.9589% 51.6363 55.573);
+    --ember: lab(57.9589% 51.6363 55.573);
+    --bone: lab(93.105% 1.56859 9.51444);
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html, body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    max-width: 100vw;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  body {
+    cursor: none;
+  }
+
+  @media (max-width: 1024px) {
+    body {
+      cursor: auto;
+    }
+  }
+
+  ::selection {
+    background: var(--ember);
+    color: var(--primary-foreground);
+  }
+
+  @media (max-width: 640px) {
+    :root {
+      font-size: 14px;
+    }
+  }
+
+  .hero-main-title {
+    font-family: var(--font-display);
+    color: var(--bone);
+    letter-spacing: -.04em;
+    font-size: clamp(2.5rem, 10vw, 5rem);
+    font-weight: 300;
+    line-height: .95;
+  }
+
+  @media (min-width: 768px) {
+    .hero-main-title {
+      line-height: .85;
+      font-size: var(--hero-font-size-desktop);
+    }
+  }
+
+  .hero-italic {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .hero-indent-1, .hero-indent-2 {
+    padding-left: 0;
+  }
+
+  @media (min-width: 768px) {
+    .hero-indent-1 {
+      padding-left: 8vw;
+    }
+
+    .hero-indent-2 {
+      padding-left: 15vw;
+    }
+  }
+
+  .nav-desktop {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .nav-desktop {
+      display: flex;
+    }
+  }
+
+  .nav-mobile-toggle {
+    display: flex;
+  }
+
+  @media (min-width: 768px) {
+    .nav-mobile-toggle {
+      display: none;
+    }
+  }
+
+  .portfolio-grid {
+    grid-template-columns: repeat(12, 1fr);
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 8rem;
+    display: grid;
+  }
+
+  @media (max-width: 767px) {
+    .portfolio-grid {
+      flex-direction: column;
+      gap: 2rem;
+      margin-bottom: 5rem;
+      display: flex;
+    }
+  }
+
+  .portfolio-img-col, .portfolio-text-col {
+    grid-column: span 12;
+  }
+
+  @media (min-width: 768px) {
+    .portfolio-img-col {
+      grid-column: span 8;
+    }
+
+    .portfolio-text-col {
+      grid-column: span 4;
+    }
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+    font-feature-settings: "ss01";
+  }
+
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+
+  .text-gold {
+    color: var(--gold);
+  }
+
+  .marquee-track {
+    animation: 15s linear infinite marquee;
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-33.33%);
+    }
+  }
+
+  .ease-expo {
+    transition-timing-function: cubic-bezier(.19, 1, .22, 1);
+  }
+
+  .floating {
+    animation: 6s ease-in-out infinite floating;
+  }
+
+  @keyframes floating {
+    0%, 100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-30px);
+    }
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .bg-radial-vignette {
+    background: radial-gradient(circle, #0000 40%, #000c 100%);
+  }
+}
+
+/*# sourceMappingURL=Downloads_inspired-studio-main_src_styles_0ldp4~2.css.map*/

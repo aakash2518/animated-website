@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 
 export function Marquee() {
@@ -32,7 +34,7 @@ export function Marquee() {
             <img 
               src={logo.url} 
               alt={logo.name} 
-              className="h-12 w-12 md:h-20 md:w-20 object-contain opacity-90 group-hover:opacity-100 transition-all duration-300 filter grayscale hover:grayscale-0" 
+              className="h-12 w-12 md:h-20 md:w-20 object-contain transition-all duration-300 hover:scale-110" 
             />
             <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-mono text-foreground whitespace-nowrap">
               {logo.name}

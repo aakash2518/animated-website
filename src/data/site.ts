@@ -4,6 +4,7 @@ export const services = [
     icon: "◐",
     title: "Website Development",
     tagline: "Turn your idea into a website that actually sells.",
+    slug: "website-development",
     points: [
       "Custom business websites",
       "E-commerce stores built to convert",
@@ -16,6 +17,7 @@ export const services = [
     icon: "◑",
     title: "Native Mobile Apps",
     tagline: "Apps that feel built just for your users.",
+    slug: "mobile-apps",
     points: [
       "Android — Java, Kotlin",
       "iOS — Swift, Objective-C",
@@ -28,6 +30,7 @@ export const services = [
     icon: "◒",
     title: "Digital Marketing",
     tagline: "Campaigns engineered for real ROI.",
+    slug: "digital-marketing",
     points: [
       "Google & social ads that convert",
       "SEO that gets you found",
@@ -40,6 +43,7 @@ export const services = [
     icon: "◓",
     title: "Social Media Marketing",
     tagline: "Turn followers into loyal customers.",
+    slug: "social-media-marketing",
     points: [
       "Instagram, Facebook & LinkedIn growth",
       "Reels & creative campaigns",
@@ -52,6 +56,7 @@ export const services = [
     icon: "◴",
     title: "Search Engine Optimization",
     tagline: "Be visible where it matters most.",
+    slug: "seo",
     points: [
       "Keyword research & on-page SEO",
       "Technical SEO & site optimization",
@@ -64,6 +69,7 @@ export const services = [
     icon: "◵",
     title: "Google Ads (SEM / PPC)",
     tagline: "Every click counts — make it profitable.",
+    slug: "google-ads",
     points: [
       "Search & display campaigns",
       "YouTube ads",
@@ -76,6 +82,7 @@ export const services = [
     icon: "◶",
     title: "Content Marketing",
     tagline: "Content is what makes a brand memorable.",
+    slug: "content-marketing",
     points: [
       "Blog writing & SEO content",
       "Creative copywriting",
@@ -88,6 +95,7 @@ export const services = [
     icon: "◷",
     title: "Progressive Web Apps",
     tagline: "App-like experiences without the app store.",
+    slug: "progressive-web-apps",
     points: [
       "Browser-native app feel",
       "Offline & push notifications",
@@ -100,6 +108,7 @@ export const services = [
     icon: "✦",
     title: "Branding & Design",
     tagline: "A strong brand isn't seen — it's remembered.",
+    slug: "ui-ux-design",
     points: [
       "Logo & brand identity",
       "UI/UX for web & apps",
@@ -112,6 +121,7 @@ export const services = [
     icon: "✧",
     title: "Software Solutions",
     tagline: "Work smarter, not harder.",
+    slug: "software-erp-solution",
     points: [
       "Custom software development",
       "ERP & CRM solutions",
@@ -124,6 +134,7 @@ export const services = [
     icon: "❋",
     title: "AI & Automation",
     tagline: "Step into the future of business.",
+    slug: "business-automation",
     points: [
       "AI chatbots & virtual assistants",
       "Business process automation",
@@ -133,58 +144,73 @@ export const services = [
   },
 ];
 
-const w1 = "/assets/work-1.jpg";
-const w2 = "/assets/work-2.jpg";
-const w3 = "/assets/work-3.jpg";
-const w4 = "/assets/work-4.jpg";
-const w5 = "/assets/work-5.jpg";
+const p1 = "/assets/p1.png";
+const p2 = "/assets/p2.png";
+const p3 = "/assets/p3.png";
+const p4 = "/assets/p4.png";
+const p5 = "/assets/p5.png";
+const p6 = "/assets/p6.png";
 
 export const projects = [
   {
     n: "01",
-    title: "E-Commerce Platform",
-    tag: "React · Node · MongoDB · AWS",
-    year: "2025",
-    desc: "Online marketplace with AI-powered recommendations and real-time analytics.",
-    img: w1,
+    title: "Luxury E-Commerce",
+    category: "Website Development",
+    tag: "Next.js · GSAP · Tailwind",
+    year: "2026",
+    desc: "A premium editorial shopping experience for high-end fashion.",
+    img: p1,
   },
   {
     n: "02",
-    title: "Healthcare Management",
-    tag: "Vue · Laravel · MySQL · Docker",
-    year: "2025",
-    desc: "Hospital system covering patient records, scheduling and telemedicine.",
-    img: w2,
+    title: "JetStream App",
+    category: "Mobile App Design",
+    tag: "SwiftUI · Flutter · Node.js",
+    year: "2026",
+    desc: "Private jet booking platform with seamless real-time tracking.",
+    img: p2,
   },
   {
     n: "03",
-    title: "Smart Transportation",
-    tag: "React Native · Express · Redis",
-    year: "2024",
-    desc: "Ride-sharing app with route optimization and real-time tracking.",
-    img: w3,
+    title: "ChronoVision",
+    category: "UI/UX Experience",
+    tag: "Three.js · React · Framer",
+    year: "2025",
+    desc: "Immersive 3D dashboard for luxury watch collectors.",
+    img: p3,
   },
   {
     n: "04",
-    title: "EdTech Learning",
-    tag: "Angular · Spring Boot · WebRTC",
-    year: "2024",
-    desc: "Video-first learning platform with personalised AI learning paths.",
-    img: w4,
+    title: "NeuralFlow",
+    category: "AI Automation",
+    tag: "Python · PyTorch · OpenAI",
+    year: "2025",
+    desc: "Autonomous business scaling using advanced AI agents.",
+    img: p4,
   },
   {
     n: "05",
-    title: "FinTech Mobile",
-    tag: "Flutter · Django · Blockchain",
-    year: "2023",
-    desc: "Banking app with biometric auth, crypto trading and fraud detection.",
-    img: w5,
+    title: "RoyalFinity Identity",
+    category: "Branding",
+    tag: "Strategy · Motion · Logo",
+    year: "2024",
+    desc: "A complete visual overhaul for a digital-first tech giant.",
+    img: p5,
+  },
+  {
+    n: "06",
+    title: "Pulse Analytics",
+    category: "SaaS Dashboard",
+    tag: "TypeScript · D3.js · Supabase",
+    year: "2024",
+    desc: "High-end financial analytics platform for global enterprises.",
+    img: p6,
   },
 ];
 
 export const faqs = [
   {
-    q: "What services does royalfinity technology offer?",
+    q: "What services does RoyalFinity Technologies offer?",
     a: "End-to-end digital — website & app development, branding, AI & automation, digital marketing, and custom software, tailored to your business.",
   },
   {

@@ -1,29 +1,49 @@
+"use client";
+
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { services } from "@/data/site";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
+import img1 from "../assets/1.png";
+import img2 from "../assets/2.png";
+import img3 from "../assets/3.png";
+import img4 from "../assets/4.png";
+
 // Map service titles to their image paths
-const serviceImages: Record<string, string> = {
-  "Website Development": "/src/assets/webdev.webp",
-  "Native Mobile Apps": "/src/assets/mobile app.webp",
-  "Digital Marketing": "/src/assets/digitalmakreting.webp",
-  "Social Media Marketing": "/src/assets/socialmedia.webp",
-  "Search Engine Optimization": "/src/assets/seo.webp",
-  "Google Ads (SEM / PPC)": "/src/assets/googleads.webp",
+const serviceImages: Record<string, any> = {
+  "Website Development": img1,
+  "Native Mobile Apps": img2,
+  "Digital Marketing": img3,
+  "Social Media Marketing": img4,
+  "Search Engine Optimization": img1,
+  "Google Ads (SEM / PPC)": img2,
+};
+
+// Map service numbers to slugs
+const serviceToSlug: Record<string, string> = {
+  "01": "website-development",
+  "02": "mobile-apps",
+  "03": "digital-marketing",
+  "04": "social-media-marketing",
+  "05": "seo",
+  "06": "google-ads",
 };
 
 function ServiceCard({ service }: { service: typeof services[0] }) {
   const imageUrl = serviceImages[service.title];
+  const slug = serviceToSlug[service.n];
 
   return (
-    <article
-      className="shrink-0 w-[85vw] md:w-[50vw] lg:w-[45vw] group"
+    <Link
+      href={`/services/${slug}`}
+      className="shrink-0 w-[85vw] md:w-[50vw] lg:w-[45vw] group block"
       data-cursor
     >
-      <div className="relative overflow-hidden bg-[#1a1a1a] border border-[var(--bone)]/10 rounded-3xl aspect-[16/10] transition-all duration-700 hover:border-[var(--ember)]/30 hover:bg-[#1f1f1f]">
+      <div className="relative overflow-hidden bg-[#1a1a1a] border border-[var(--bone)]/10 rounded-3xl aspect-square md:aspect-[16/10] transition-all duration-700 hover:border-[var(--ember)]/30 hover:bg-[#1f1f1f]">
         {/* Number badge */}
         <div className="absolute top-6 left-6 md:top-8 md:left-8 font-mono text-[10px] uppercase tracking-[0.25em] text-[var(--bone)]/40 z-10">
           {service.n}
@@ -47,7 +67,7 @@ function ServiceCard({ service }: { service: typeof services[0] }) {
             {imageUrl && (
               <div className="relative w-full h-full flex items-center justify-center">
                 <img 
-                  src={imageUrl} 
+                  src={typeof imageUrl === 'string' ? imageUrl : imageUrl.src} 
                   alt={service.title}
                   className="w-full h-full object-contain max-h-[350px] md:max-h-[400px] transition-transform duration-700 group-hover:scale-110"
                   loading="lazy"
@@ -60,14 +80,13 @@ function ServiceCard({ service }: { service: typeof services[0] }) {
 
       <div className="mt-5 flex items-baseline justify-between font-mono text-[10px] uppercase tracking-[0.25em] text-[var(--bone)]/60">
         <span>{service.n}</span>
-        <span className="text-[var(--ember)]/60">View details →</span>
+        <span className="text-[var(--ember)]/60 group-hover:text-[var(--ember)] transition-colors">View details →</span>
       </div>
-    </article>
+    </Link>
   );
 }
 
 export function ServicesHorizontal() {
-  const wrap = useRef<HTMLDivElement>(null);
   const track = useRef<HTMLDivElement>(null);
 
   // Filter only the required services
@@ -82,51 +101,44 @@ export function ServicesHorizontal() {
     ].includes(service.title)
   );
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      if (!track.current || !wrap.current) return;
-      const distance = track.current.scrollWidth - window.innerWidth;
-      
-      // Set initial position to show content from right
-      gsap.set(track.current, { x: -distance });
-      
-      // Animate from right to left (moving right on scroll)
-      gsap.to(track.current, {
-        x: 0,
-        ease: "none",
-        scrollTrigger: {
-          trigger: wrap.current,
-          start: "top top",
-          end: () => `+=${distance}`,
-          scrub: 1,
-          pin: true,
-          invalidateOnRefresh: true,
-        },
-      });
-    }, wrap);
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <section id="services" ref={wrap} className="relative h-[100svh] overflow-hidden bg-black">
-      <div className="absolute top-0 left-0 right-0 z-10 px-6 md:px-10 py-8 flex justify-between font-mono text-[10px] uppercase tracking-[0.25em] text-[var(--bone)]/70">
-        <span>(What we do)</span>
-        <span>↔ Scroll</span>
+    <section id="services" className="relative py-24 md:py-32 bg-black overflow-hidden">
+      <div className="px-6 md:px-10 mb-12 flex justify-between items-end font-mono text-[10px] uppercase tracking-[0.25em] text-[var(--bone)]/70">
+        <div>
+          <span className="block mb-2">(What we do)</span>
+          <h2 className="font-display text-4xl md:text-6xl tracking-tight text-[var(--bone)]">Services</h2>
+        </div>
+        <span className="hidden md:block">↔ Scroll horizontally</span>
       </div>
 
-      <div ref={track} className="flex h-full items-center gap-8 md:gap-16 pl-6 md:pl-10 pr-6 md:pr-10 will-change-transform">
-        <div className="shrink-0 w-[60vw] md:w-[40vw]">
-          <p className="font-display text-5xl md:text-7xl leading-[0.95] tracking-tight">
-            From brand to build to <span className="text-[var(--ember)] italic">growth</span>.
+      <div 
+        ref={track} 
+        className="flex items-center gap-8 md:gap-12 px-6 md:px-10 overflow-x-auto pb-8 scrollbar-hide snap-x snap-mandatory"
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      >
+        <div className="shrink-0 w-[80vw] md:w-[40vw] snap-start">
+          <p className="font-display text-5xl md:text-7xl leading-[1.1] tracking-tight">
+            Struggling <span className="text-[var(--ember)] italic">to grow</span>
           </p>
-          <p className="mt-8 max-w-md text-[var(--bone)]/60">
+          <p className="font-display text-5xl md:text-7xl leading-[1.1] tracking-tight">
+            your business online?
+          </p>
+          <p className="font-display text-5xl md:text-7xl leading-[1.1] tracking-tight mt-6">
+            <span className="text-[var(--ember)]">We fix that.</span>
+          </p>
+          <p className="mt-8 max-w-md text-[var(--bone)]/60 text-sm md:text-base">
             Full-stack digital services engineered to move real metrics — from websites and apps to marketing and automation.
           </p>
         </div>
 
         {filteredServices.map((service) => (
-          <ServiceCard key={service.n} service={service} />
+          <div key={service.n} className="snap-start">
+            <ServiceCard service={service} />
+          </div>
         ))}
+        
+        {/* Spacer for end of scroll */}
+        <div className="shrink-0 w-12 md:w-20 h-1" />
       </div>
     </section>
   );
