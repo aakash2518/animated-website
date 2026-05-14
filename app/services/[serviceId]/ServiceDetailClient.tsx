@@ -1,13 +1,13 @@
 "use client";
 
-import { services, projects } from "@/data/site";
+import { services } from "@/data/site";
 import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);

@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { services } from "@/data/site";
 import Link from "next/link";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -65,12 +66,12 @@ function ServiceCard({ service }: { service: typeof services[0] }) {
           {/* Right side - Image */}
           <div className="col-span-12 md:col-span-5 flex items-center justify-center">
             {imageUrl && (
-              <div className="relative w-full h-full flex items-center justify-center">
-                <img 
-                  src={typeof imageUrl === 'string' ? imageUrl : imageUrl.src} 
+              <div className="relative w-full h-full">
+                <Image 
+                  src={imageUrl} 
                   alt={service.title}
-                  className="w-full h-full object-contain max-h-[350px] md:max-h-[400px] transition-transform duration-700 group-hover:scale-110"
-                  loading="lazy"
+                  fill
+                  className="object-contain transition-transform duration-700 group-hover:scale-110"
                 />
               </div>
             )}

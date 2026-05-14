@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
+import Image from "next/image";
 import { faqs } from "@/data/site";
 import image6 from "@/assets/6.webp";
 
@@ -54,11 +55,11 @@ export function FAQ() {
             </div>
           ))}
         </div>
-        <div className="col-span-12 md:col-span-3 md:order-2 flex justify-center md:justify-end floating">
-          <img 
-            src={typeof image6 === 'string' ? image6 : image6.src} 
+        <div className="hidden md:block floating">
+          <Image 
+            src={image6} 
             alt="" 
-            className="w-full max-w-[400px] h-auto object-contain transition-transform duration-700 hover:-rotate-3 hover:scale-105" 
+            className="w-full max-w-[300px] h-auto object-contain opacity-50 grayscale hover:grayscale-0 transition-all duration-700"
           />
         </div>
       </div>

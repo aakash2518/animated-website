@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import Image from "next/image";
 import image5 from "@/assets/5.webp";
 
 export function About() {
@@ -30,10 +31,11 @@ export function About() {
           <p className="about-line">Results that last come second.</p>
         </div>
         <div className="col-span-12 md:col-span-4 flex justify-center md:justify-end floating">
-          <img 
-            src={typeof image5 === 'string' ? image5 : image5.src} 
+          <Image 
+            src={image5} 
             alt="" 
             className="w-full max-w-[500px] h-auto object-contain transition-all duration-1000 hover:scale-110"
+            priority={false}
           />
         </div>
       </div>

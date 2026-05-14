@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
 import logo from "../assets/logo.png";
 import { useState, useEffect } from "react";
@@ -63,9 +64,11 @@ export function Nav() {
       <div className="flex items-center justify-between px-6 md:px-10">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group relative z-50">
-          <img
-            src={typeof logo === 'string' ? logo : logo.src}
+          <Image
+            src={logo}
             alt="RoyalFinity"
+            width={32}
+            height={32}
             className="w-8 h-8 object-contain transition-transform duration-500 group-hover:scale-110"
           />
           <span className="font-display text-xl tracking-tight text-[var(--gold)]">

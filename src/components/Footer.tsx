@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { contact } from "@/data/site";
+import Image from "next/image";
 import logo from "../assets/logo.png";
 import footerImg from "@/assets/footer.webp";
 import { Mail, Phone, MapPin } from "lucide-react";
@@ -34,7 +35,13 @@ export function Footer() {
           {/* Column 1: Brand */}
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-3 mb-6">
-              <img src={typeof logo === 'string' ? logo : logo.src} alt="RoyalFinity" className="w-8 h-8 object-contain" />
+              <Image 
+              src={logo} 
+              alt="RoyalFinity" 
+              width={120}
+              height={40}
+              className="h-10 w-auto grayscale brightness-200"
+            />
               <span className="font-display text-xl tracking-tight text-[#D4AF37]">
                 RoyalFinity
               </span>
@@ -101,8 +108,14 @@ export function Footer() {
 
           {/* Column 5: Social/Trust Illustration */}
           <div className="relative h-40">
-            <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-48 md:w-64 floating pointer-events-none z-10">
-              <img src={typeof footerImg === 'string' ? footerImg : footerImg.src} alt="" className="w-full h-auto" />
+            <div className="relative h-64 md:h-full rounded-3xl overflow-hidden group">
+              <Image 
+                src={footerImg} 
+                alt="Working" 
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
             </div>
           </div>
 

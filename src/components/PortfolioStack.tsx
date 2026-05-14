@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 import { projects } from "@/data/site";
 import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 
 export function PortfolioStack() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -80,10 +81,11 @@ export function PortfolioStack() {
           >
             {/* Left Side: Image */}
             <div className="w-full lg:w-3/5 h-1/2 lg:h-full relative overflow-hidden group">
-              <img 
+              <Image 
                 src={project.img} 
                 alt={project.title}
-                className="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-110"
+                fill
+                className="object-cover transition-transform duration-[2s] ease-out group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
             </div>

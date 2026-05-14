@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import teamImg from "@/assets/team.webp";
 import { Footer } from "@/components/Footer";
-
+import Image from "next/image";
 import logo from "@/assets/logo.png";
 
 const teamMembers = [
@@ -89,10 +89,11 @@ export default function TeamsPage() {
             </div>
           </div>
           <div className="aspect-video overflow-hidden rounded-sm bg-white/5">
-             <img 
-              src={typeof teamImg === 'string' ? teamImg : teamImg.src} 
+            <Image 
+              src={teamImg} 
               alt="Team Office"
-              className="w-full h-full object-cover opacity-80"
+              fill
+              className="object-cover opacity-80"
             />
           </div>
         </div>
@@ -103,11 +104,12 @@ export default function TeamsPage() {
         <h2 className="font-display text-[12vw] md:text-[12vw] leading-none tracking-tighter opacity-10 select-none uppercase">
           ROYALFINITY
         </h2>
-        <div className="opacity-10 w-[15vw] md:w-[10vw]">
-          <img 
-            src={typeof logo === 'string' ? logo : logo.src} 
+        <div className="opacity-10 w-[15vw] md:w-[10vw] relative h-10 md:h-12">
+          <Image 
+            src={logo} 
             alt="" 
-            className="w-full h-auto grayscale brightness-200"
+            fill
+            className="object-contain grayscale brightness-200"
           />
         </div>
       </div>

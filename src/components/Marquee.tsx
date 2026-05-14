@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export function Marquee() {
   const [mounted, setMounted] = useState(false);
@@ -31,9 +32,11 @@ export function Marquee() {
       {logos.map((logo, i) => (
         <div key={i} className="flex items-center gap-16 md:gap-32 flex-shrink-0">
           <div className="group relative flex items-center justify-center">
-            <img 
+            <Image 
               src={logo.url} 
               alt={logo.name} 
+              width={80}
+              height={80}
               className="h-12 w-12 md:h-20 md:w-20 object-contain transition-all duration-300 hover:scale-110" 
             />
             <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-mono text-foreground whitespace-nowrap">
