@@ -5,7 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { services } from "@/data/site";
 import Link from "next/link";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,7 +15,7 @@ import img3 from "../assets/3.png";
 import img4 from "../assets/4.png";
 
 // Map service titles to their image paths
-const serviceImages: Record<string, string | { src: string }> = {
+const serviceImages: Record<string, StaticImageData | string> = {
   "Website Development": img1,
   "Native Mobile Apps": img2,
   "Digital Marketing": img3,

@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { projects } from "@/data/site";
 import { Footer } from "@/components/Footer";
+import Image from "next/image";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -46,12 +47,12 @@ export default function PortfolioPage() {
             className={`flex flex-col gap-12 md:gap-16 items-center ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}
           >
             <div className="w-full md:w-2/3">
-              <div className="overflow-hidden bg-card aspect-[16/10] rounded-2xl group" data-cursor>
-                <img 
+              <div className="overflow-hidden bg-card aspect-[16/10] rounded-2xl group relative" data-cursor>
+                <Image 
                   src={p.img} 
                   alt={p.title} 
-                  loading="lazy" 
-                  className="project-img h-full w-full object-cover will-change-transform transition-transform duration-700 group-hover:scale-105" 
+                  fill
+                  className="project-img object-cover will-change-transform transition-transform duration-700 group-hover:scale-105" 
                 />
               </div>
             </div>

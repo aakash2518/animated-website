@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { contact } from "@/data/site";
 import { Footer } from "@/components/Footer";
+import Image from "next/image";
 import { Mail, Phone, MapPin, ArrowUpRight } from "lucide-react";
 import floatingAsset from "@/assets/7.webp";
 
@@ -109,8 +110,8 @@ export default function ContactPage() {
             transition={{ duration: 1, delay: 0.6 }}
             className="absolute -top-24 -right-12 md:-top-32 md:-right-20 w-48 md:w-64 z-20 pointer-events-none floating"
           >
-            <img 
-              src={typeof floatingAsset === "string" ? floatingAsset : floatingAsset.src} 
+            <Image 
+              src={floatingAsset} 
               alt="" 
               className="w-full h-auto"
             />
