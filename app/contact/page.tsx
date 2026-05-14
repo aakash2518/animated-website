@@ -170,7 +170,7 @@ export default function ContactPage() {
 
             {sent && (
               <p className="text-center text-[#D4AF37] font-mono text-[10px] uppercase tracking-widest mt-4">
-                We'll get back to you shortly.
+                We&apos;ll get back to you shortly.
               </p>
             )}
           </form>

@@ -129,7 +129,7 @@ export function Hero() {
         <div className="relative z-10 flex h-full flex-col justify-between px-6 md:px-10 pt-32 pb-24">
           <div className="flex justify-between items-start font-mono text-[10px] uppercase tracking-[0.25em] text-[var(--bone)]/70">
             <span>Faridabad / India</span>
-            <span className="text-right max-w-[18ch] hidden sm:block">RoyalFinity Technologies — let's grow together</span>
+            <span className="text-right max-w-[18ch] hidden sm:block">RoyalFinity Technologies — let&apos;s grow together</span>
           </div>
 
           <div className="relative flex-grow flex items-center justify-start">

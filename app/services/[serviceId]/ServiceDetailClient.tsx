@@ -27,15 +27,6 @@ const slugToId: Record<string, string> = {
   "business-automation":    "11",
 };
 
-const navSlugs = [
-  { slug: "website-development",   label: "Website Development"       },
-  { slug: "mobile-apps",           label: "Mobile Apps"               },
-  { slug: "ui-ux-design",          label: "UI/UX Design"              },
-  { slug: "digital-marketing",     label: "Digital Marketing"         },
-  { slug: "software-erp-solution", label: "Software & ERP Solution"   },
-  { slug: "business-automation",   label: "Business Automation"       },
-];
-
 const serviceConfig: Record<string, { folder: string; frames: number; padding: number }> = {
   "01": { folder: "webdevelopment_service",       frames: 69,  padding: 2 },
   "02": { folder: "mobileapp_service",            frames: 192, padding: 3 },
@@ -50,18 +41,7 @@ const serviceConfig: Record<string, { folder: string; frames: number; padding: n
   "11": { folder: "businessautomation_service",   frames: 104, padding: 3 },
 };
 
-const processSteps = [
-  { n: "01", title: "Discovery", desc: "We dive deep into your business goals, target audience, and competitive landscape." },
-  { n: "02", title: "Strategy", desc: "Craft a tailored roadmap with clear milestones and measurable outcomes." },
-  { n: "03", title: "Design", desc: "Create stunning, user-centric designs that align with your brand identity." },
-  { n: "04", title: "Development", desc: "Build with cutting-edge technology, ensuring performance and scalability." },
-  { n: "05", title: "Testing", desc: "Rigorous QA to ensure flawless functionality across all devices and platforms." },
-  { n: "06", title: "Launch", desc: "Deploy with confidence and provide ongoing support for continuous improvement." },
-];
-
 export function ServiceDetailClient({ serviceId }: { serviceId: string }) {
-  const router = useRouter();
-
   const id      = slugToId[serviceId];
   const service = services.find((s) => s.n === id);
   const config  = id ? serviceConfig[id] : null;
@@ -94,7 +74,7 @@ export function ServiceDetailClient({ serviceId }: { serviceId: string }) {
     }
 
     return () => { framesRef.current = []; };
-  }, [config?.folder]);
+  }, [config]);
 
   useEffect(() => {
     if (!isLoaded || !canvasRef.current || !containerRef.current || !config) return;
@@ -141,7 +121,7 @@ export function ServiceDetailClient({ serviceId }: { serviceId: string }) {
       st.kill();
       window.removeEventListener("resize", setSize);
     };
-  }, [isLoaded, config?.folder]);
+  }, [isLoaded, config]);
 
   if (!service || !config) {
     return (
@@ -159,11 +139,6 @@ export function ServiceDetailClient({ serviceId }: { serviceId: string }) {
       </main>
     );
   }
-
-  const relatedProjects = projects.filter(p => 
-    p.category.toLowerCase().includes(service.title.toLowerCase().split(' ')[0]) ||
-    service.title.toLowerCase().includes(p.category.toLowerCase().split(' ')[0])
-  ).slice(0, 3);
 
   return (
     <main className="bg-background min-h-screen overflow-x-hidden">

@@ -19,6 +19,6 @@ declare module "*.jpg" {
 }
 
 declare module "*.svg" {
-  const src: any;
+  const src: string;
   export default src;
 }

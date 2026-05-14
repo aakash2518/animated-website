@@ -8,7 +8,6 @@ import { projects } from "@/data/site";
 import { ArrowUpRight } from "lucide-react";
 
 export function PortfolioStack() {
-  const containerRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

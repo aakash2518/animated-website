@@ -116,7 +116,7 @@ export function ReviewsFloating() {
               </div>
             </div>
             <p className="text-[11px] leading-relaxed text-white/60 font-sans italic">
-              "{r.text}"
+              &quot;{r.text}&quot;
             </p>
             <div className="mt-4 flex items-center gap-2">
               <div className="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center text-[10px] font-bold text-white">G</div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Intro } from "@/components/Intro";
 import { SmoothScroll } from "@/components/SmoothScroll";

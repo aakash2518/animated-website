@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { contact, services } from "@/data/site";
+import { contact } from "@/data/site";
 import logo from "../assets/logo.png";
 import footerImg from "@/assets/footer.webp";
-import { Mail, Phone, MapPin, Star } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 
 export function Footer() {
   const quickLinks = [
