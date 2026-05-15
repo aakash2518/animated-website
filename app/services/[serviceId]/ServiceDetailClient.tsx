@@ -1,6 +1,6 @@
 "use client";
 
-import { services } from "@/data/site";
+import { services, serviceDetails } from "@/data/site";
 import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
@@ -123,6 +123,9 @@ export function ServiceDetailClient({ serviceId }: { serviceId: string }) {
     };
   }, [isLoaded, config]);
 
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
+
   if (!service || !config) {
     return (
       <main className="min-h-screen bg-background flex items-center justify-center">
@@ -142,7 +145,7 @@ export function ServiceDetailClient({ serviceId }: { serviceId: string }) {
 
   return (
     <main className="bg-background min-h-screen overflow-x-hidden">
-      {!isLoaded && (
+      {mounted && !isLoaded && (
         <motion.div
           initial={{ opacity: 1 }}
           animate={{ opacity: isLoaded ? 0 : 1 }}
@@ -247,6 +250,89 @@ export function ServiceDetailClient({ serviceId }: { serviceId: string }) {
           <div className="w-px h-12 bg-gradient-to-b from-[var(--ember)] to-transparent" />
         </motion.div>
       </div>
+
+      {/* Detailed Service Section */}
+      {serviceDetails[id] && (
+        <section className="bg-black py-32 px-6 md:px-20 overflow-hidden relative border-t border-white/5">
+          {/* Subtle tech background elements */}
+          <div className="absolute top-20 left-10 opacity-[0.05] pointer-events-none select-none font-mono text-[8px] space-y-1 text-white/40">
+            <p>{"<html>"}</p>
+            <p>{"<head>"}</p>
+            <p>{"<title>"}</p>
+          </div>
+          <div className="absolute top-40 right-10 opacity-[0.05] pointer-events-none select-none font-mono text-[8px] space-y-1 text-right text-white/40">
+            <p>{"function() {"}</p>
+            <p>{"return true;"}</p>
+            <p>{"}"}</p>
+          </div>
+
+          <div className="max-w-6xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8"
+            >
+              <div className="w-1.5 h-1.5 rounded-full bg-[var(--gold)] shadow-[0_0_8px_rgba(212,175,55,0.8)]" />
+              <span className="font-mono text-[9px] md:text-[10px] font-bold text-white/60 uppercase tracking-[0.2em]">
+                {serviceDetails[id].badge}
+              </span>
+            </motion.div>
+
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="font-display text-5xl md:text-7xl lg:text-8xl text-white tracking-tighter mb-8 leading-[0.9] uppercase"
+            >
+              {serviceDetails[id].title.split(" ").map((word, i) => {
+                const isAccent = ["website", "mobile", "digital", "graphic", "software", "business"].includes(word.toLowerCase());
+                return (
+                  <span key={i} className={isAccent ? "text-[var(--gold)] italic" : ""}>
+                    {word}{" "}
+                  </span>
+                );
+              })}
+            </motion.h2>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="text-white/40 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed mb-20 font-sans"
+            >
+              {serviceDetails[id].desc}
+            </motion.p>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10">
+              {serviceDetails[id].features.map((feature, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
+                  viewport={{ once: true }}
+                  className="bg-white/5 p-8 md:p-10 rounded-[32px] border border-white/5 hover:border-[var(--gold)]/30 hover:bg-white/[0.08] transition-all duration-500 group relative overflow-hidden"
+                >
+                  <div className="relative z-10">
+                    <div className="text-4xl md:text-5xl mb-6 transform group-hover:scale-110 transition-transform duration-500">
+                      {feature.icon}
+                    </div>
+                    <h4 className="font-display text-xl text-white mb-2">{feature.label}</h4>
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-white/30">{feature.sub}</p>
+                  </div>
+                  
+                  {/* Subtle glow effect on hover */}
+                  <div className="absolute inset-0 bg-[var(--gold)]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <Footer />
     </main>

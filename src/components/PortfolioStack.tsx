@@ -29,18 +29,20 @@ export function PortfolioStack() {
     });
 
     cards.forEach((card, i) => {
+      // Add hardware acceleration
+      gsap.set(card, { willChange: "transform" });
+      
       if (i > 0) {
         // Bring the card up
         tl.to(card, {
           yPercent: 0,
           ease: "none",
-        }, i - 0.5); // Start slightly before previous ends for overlap feel
+        }, i - 0.5); 
 
-        // Scale down and blur the previous card
+        // Scale down the previous card (removed blur for performance)
         tl.to(cards[i - 1], {
-          scale: 0.9,
-          opacity: 0.5,
-          filter: "blur(10px)",
+          scale: 0.94,
+          opacity: 0.8,
           ease: "none",
         }, i - 0.5);
       }

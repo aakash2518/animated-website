@@ -178,6 +178,27 @@ export default function ContactPage() {
         </motion.div>
       </div>
 
+      {/* Google Maps Embed - Full Width */}
+      <section className="w-full mb-0 overflow-hidden">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+          className="relative w-full h-[600px] bg-black border-t border-white/5"
+        >
+          <iframe 
+            src="https://www.google.com/maps?q=Royalfinity%20Technologies%20Faridabad&output=embed"
+            className="absolute inset-0 w-full h-full grayscale opacity-90 hover:opacity-100 transition-opacity duration-1000"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+          {/* Subtle overlay removed for clarity */}
+        </motion.div>
+      </section>
+
       <Footer />
     </main>
   );

@@ -25,6 +25,7 @@ const submenuItems: SubmenuItem[] = [
 
 const links: NavLink[] = [
   { to: "/",         label: "Home"      },
+  { to: "/about",    label: "About"     },
   { to: "/services", label: "Services", hasSubmenu: true, submenu: submenuItems },
   { to: "/portfolio",label: "Portfolio" },
   { to: "/teams",    label: "Teams"     },
@@ -58,8 +59,8 @@ export function Nav() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
-        isScrolled ? "bg-black/80 backdrop-blur-md py-2" : "bg-transparent py-6"
-      } ${!isOpen ? "mix-blend-difference" : "bg-black"}`}
+        isScrolled ? "bg-[#0A0A0A] py-2 border-b border-white/5 shadow-2xl" : "bg-transparent py-6"
+      } ${isOpen ? "bg-black" : ""}`}
     >
       <div className="flex items-center justify-between px-6 md:px-10">
         {/* Logo */}
@@ -67,8 +68,8 @@ export function Nav() {
           <Image
             src={logo}
             alt="RoyalFinity"
-            width={32}
-            height={32}
+            width={64}
+            height={64}
             className="w-8 h-8 object-contain transition-transform duration-500 group-hover:scale-110"
           />
           <span className="font-display text-xl tracking-tight text-[var(--gold)]">
@@ -149,47 +150,66 @@ export function Nav() {
       </div>
 
       {/* ── Mobile Menu ── */}
-      <div
-        className={`fixed inset-0 bg-background z-40 flex flex-col items-center justify-center transition-all duration-500 md:hidden ${
-          isOpen ? "opacity-100 pointer-events-auto translate-y-0" : "opacity-0 pointer-events-none translate-y-full"
-        }`}
-      >
-        <nav className="flex flex-col items-center gap-6 text-2xl uppercase tracking-[0.2em] text-[var(--bone)] font-display overflow-y-auto py-20 w-full px-10">
-          {links.map((l) => (
-            <div key={l.label} className="w-full text-center">
-              <Link
-                href={l.to}
-                onClick={() => !l.hasSubmenu && setIsOpen(false)}
-                className={`hover:text-[var(--gold)] transition-colors ${pathname === l.to ? "text-[var(--gold)]" : ""}`}
-              >
-                {l.label}
-              </Link>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, clipPath: "circle(0% at 100% 0%)" }}
+            animate={{ opacity: 1, clipPath: "circle(150% at 100% 0%)" }}
+            exit={{ opacity: 0, clipPath: "circle(0% at 100% 0%)" }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-0 bg-black/95 backdrop-blur-2xl z-40 flex flex-col md:hidden"
+          >
+            <nav className="flex flex-col items-center justify-center flex-1 gap-8 overflow-y-auto pt-32 pb-20 px-10">
+              {links.map((l, i) => (
+                <motion.div
+                  key={l.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 + i * 0.1 }}
+                  className="w-full text-center group"
+                >
+                  <Link
+                    href={l.to}
+                    onClick={() => !l.hasSubmenu && setIsOpen(false)}
+                    className={`block font-display text-4xl uppercase tracking-tighter transition-all duration-500 hover:text-[var(--gold)] ${pathname === l.to ? "text-[var(--gold)]" : "text-white"}`}
+                  >
+                    {l.label}
+                  </Link>
 
-              {l.hasSubmenu && (
-                <div className="flex flex-col gap-3 mt-6">
-                  {l.submenu.map((item) => (
-                    <button
-                      key={item.slug}
-                      type="button"
-                      onClick={() => goToService(item.slug)}
-                      className="text-xs tracking-[0.2em] text-white/40 hover:text-[#D4AF37] transition-colors cursor-pointer"
-                    >
-                      {item.label}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
-        </nav>
+                  {l.hasSubmenu && (
+                    <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 mt-6 max-w-xs mx-auto">
+                      {l.submenu.map((item) => (
+                        <button
+                          key={item.slug}
+                          type="button"
+                          onClick={() => goToService(item.slug)}
+                          className="text-[10px] uppercase tracking-[0.2em] text-white/40 hover:text-[#D4AF37] transition-colors cursor-pointer"
+                        >
+                          {item.label}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </motion.div>
+              ))}
+            </nav>
 
-        <div className="absolute bottom-12 flex flex-col items-center gap-4 font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--bone)]/60">
-          <a href="tel:+919211816999" className="hover:text-[var(--gold)] transition-colors">
-            (+91 92118 16999)
-          </a>
-          <span>Faridabad / India</span>
-        </div>
-      </div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+              className="p-10 border-t border-white/5 flex flex-col items-center gap-4 font-mono text-[9px] uppercase tracking-[0.2em] text-white/40"
+            >
+              <div className="flex gap-10">
+                <a href="tel:+919211816999" className="hover:text-[var(--gold)] transition-colors">
+                  (+91 92118 16999)
+                </a>
+                <span>Faridabad / India</span>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

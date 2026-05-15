@@ -94,7 +94,7 @@ export function WhatWeOffer() {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative h-screen w-full bg-black overflow-hidden">
+    <section ref={containerRef} className="relative h-[100svh] w-full bg-black overflow-hidden">
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full object-cover opacity-100"
@@ -103,25 +103,25 @@ export function WhatWeOffer() {
       <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black pointer-events-none" />
 
       <div className="relative z-10 h-full flex flex-col justify-center px-6 md:px-20">
-        <div className="max-w-2xl">
+        <div className="max-w-4xl">
           <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-[var(--ember)] mb-4">
             (What we offer)
           </p>
           
-          <div className="relative h-[300px] sm:h-[350px] md:h-[400px] overflow-hidden">
+          <div className="relative h-[400px] sm:h-[450px] md:h-[500px] overflow-hidden">
             {offerings.map((offering, i) => (
               <div
                 key={i}
-                className={`absolute inset-0 transition-all duration-700 ease-expo ${
+                className={`absolute inset-0 flex flex-col justify-center transition-all duration-700 ease-expo ${
                   i === activeIndex 
                     ? "opacity-100 translate-y-0" 
                     : "opacity-0 translate-y-12"
                 }`}
               >
-                <h2 className="font-display text-4xl sm:text-6xl md:text-8xl tracking-tighter leading-none mb-4">
+                <h2 className="font-display text-[clamp(2.5rem,8vw,6rem)] tracking-tighter leading-[0.9] mb-6">
                   {offering.title}
                 </h2>
-                <p className="text-lg md:text-2xl text-bone/60 max-w-md leading-relaxed">
+                <p className="text-base md:text-2xl text-bone/60 max-w-xl leading-relaxed">
                   {offering.desc}
                 </p>
               </div>

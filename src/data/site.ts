@@ -3,7 +3,7 @@ export const services = [
     n: "01",
     icon: "◐",
     title: "Website Development",
-    tagline: "Turn your idea into a website that actually sells.",
+    tagline: "Transform your digital presence with cutting-edge web technologies, responsive design, and exceptional user experiences that drive business growth and customer engagement.",
     slug: "website-development",
     points: [
       "Custom business websites",
@@ -16,7 +16,7 @@ export const services = [
     n: "02",
     icon: "◑",
     title: "Native Mobile Apps",
-    tagline: "Apps that feel built just for your users.",
+    tagline: "Create powerful, intuitive mobile applications that engage users and drive business success.",
     slug: "mobile-apps",
     points: [
       "Android — Java, Kotlin",
@@ -29,7 +29,7 @@ export const services = [
     n: "03",
     icon: "◒",
     title: "Digital Marketing",
-    tagline: "Campaigns engineered for real ROI.",
+    tagline: "Accelerate your business growth with data-driven digital marketing strategies, advanced analytics, and targeted campaigns that deliver measurable ROI and lasting success.",
     slug: "digital-marketing",
     points: [
       "Google & social ads that convert",
@@ -107,7 +107,7 @@ export const services = [
     n: "09",
     icon: "✦",
     title: "Branding & Design",
-    tagline: "A strong brand isn't seen — it's remembered.",
+    tagline: "Elevate your brand with intuitive, aesthetically pleasing designs that prioritize user experience and functionality.",
     slug: "ui-ux-design",
     points: [
       "Logo & brand identity",
@@ -120,7 +120,7 @@ export const services = [
     n: "10",
     icon: "✧",
     title: "Software Solutions",
-    tagline: "Work smarter, not harder.",
+    tagline: "Streamline your business operations with cutting-edge ERP systems and custom software solutions designed to boost efficiency and accelerate growth.",
     slug: "software-erp-solution",
     points: [
       "Custom software development",
@@ -133,7 +133,7 @@ export const services = [
     n: "11",
     icon: "❋",
     title: "AI & Automation",
-    tagline: "Step into the future of business.",
+    tagline: "Empower your business with intelligent automation solutions that optimize workflows and eliminate repetitive tasks.",
     slug: "business-automation",
     points: [
       "AI chatbots & virtual assistants",
@@ -243,4 +243,78 @@ export const contact = {
   email: "info@royalfinitytechnologies.com",
   phone: "+91 92118 16999",
   hours: "Mon — Sat · 10:00 — 19:00 IST",
+};
+
+export const serviceDetails: Record<string, {
+  badge: string;
+  title: string;
+  desc: string;
+  features: { icon: string; label: string; sub: string }[];
+}> = {
+  "01": {
+    badge: "PROFESSIONAL WEBSITE DEVELOPMENT",
+    title: "Premium Website Development Services",
+    desc: "Transform your digital presence with cutting-edge web technologies, responsive design, and exceptional user experiences that drive business growth and customer engagement.",
+    features: [
+      { icon: "⚛️", label: "React.js", sub: "Dynamic UIs" },
+      { icon: "🟢", label: "Node.js", sub: "Server Power" },
+      { icon: "🗄️", label: "Database", sub: "Secure Storage" },
+      { icon: "☁️", label: "Cloud", sub: "Scalable Deploy" }
+    ]
+  },
+  "02": {
+    badge: "PROFESSIONAL MOBILE APP DEVELOPMENT",
+    title: "Revolutionary Mobile App Development Services",
+    desc: "Create powerful, intuitive mobile applications that engage users and drive business success. From concept to deployment, we build apps that make a difference.",
+    features: [
+      { icon: "🍎", label: "iOS Apps", sub: "Native iPhone & iPad" },
+      { icon: "🤖", label: "Android Apps", sub: "Google Play Store" },
+      { icon: "⚡", label: "Cross-Platform", sub: "React Native & Flutter" },
+      { icon: "🌐", label: "PWA", sub: "Progressive Web Apps" }
+    ]
+  },
+  "03": {
+    badge: "DIGITAL MARKETING EXCELLENCE",
+    title: "Strategic Digital Marketing Solutions",
+    desc: "Accelerate your business growth with data-driven digital marketing strategies, advanced analytics, and targeted campaigns that deliver measurable ROI and lasting success.",
+    features: [
+      { icon: "🎯", label: "Targeted Ads", sub: "Precision Targeting" },
+      { icon: "📊", label: "Analytics", sub: "Data Insights" },
+      { icon: "📱", label: "Social Media", sub: "Brand Engagement" },
+      { icon: "🔍", label: "SEO", sub: "Search Visibility" }
+    ]
+  },
+  "09": {
+    badge: "PROFESSIONAL DESIGN SERVICES",
+    title: "Creative Graphic & UI/UX Design Solutions",
+    desc: "Transform your brand identity with stunning visual designs, intuitive user interfaces, and exceptional user experiences that captivate audiences and drive engagement.",
+    features: [
+      { icon: "🎨", label: "Graphic Design", sub: "Visual Identity" },
+      { icon: "📱", label: "UI Design", sub: "Interface Magic" },
+      { icon: "💡", label: "UX Research", sub: "User Experience" },
+      { icon: "🖼️", label: "Branding", sub: "Brand Identity" }
+    ]
+  },
+  "10": {
+    badge: "ENTERPRISE SOLUTIONS",
+    title: "Advanced Software & ERP Solutions",
+    desc: "Streamline your business operations with cutting-edge ERP systems and custom software solutions designed to boost efficiency, reduce costs, and accelerate growth across all departments.",
+    features: [
+      { icon: "🏢", label: "Enterprise ERP", sub: "Complete Business Suite" },
+      { icon: "💼", label: "Custom Software", sub: "Tailored Solutions" },
+      { icon: "📱", label: "Mobile Apps", sub: "On-the-Go Access" },
+      { icon: "☁️", label: "Cloud Integration", sub: "Scalable Infrastructure" }
+    ]
+  },
+  "11": {
+    badge: "ADVANCED BUSINESS AUTOMATION",
+    title: "Intelligent Business Automation Solutions",
+    desc: "Transform your business operations with cutting-edge automation technologies that streamline processes, reduce costs, eliminate human errors, and boost productivity across all departments.",
+    features: [
+      { icon: "📈", label: "Boost Efficiency", sub: "Up to 80% faster" },
+      { icon: "💰", label: "Cost Reduction", sub: "Save 60% annually" },
+      { icon: "🎯", label: "Error-Free", sub: "99.9% accuracy" },
+      { icon: "⚡", label: "24/7 Operation", sub: "Always working" }
+    ]
+  }
 };

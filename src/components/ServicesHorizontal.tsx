@@ -41,37 +41,37 @@ function ServiceCard({ service }: { service: typeof services[0] }) {
   return (
     <Link
       href={`/services/${slug}`}
-      className="shrink-0 w-[85vw] md:w-[50vw] lg:w-[45vw] group block"
+      className="shrink-0 w-[85vw] md:w-[60vw] lg:w-[50vw] group block snap-start"
       data-cursor
     >
-      <div className="relative overflow-hidden bg-[#1a1a1a] border border-[var(--bone)]/10 rounded-3xl aspect-square md:aspect-[16/10] transition-all duration-700 hover:border-[var(--ember)]/30 hover:bg-[#1f1f1f]">
+      <div className="relative overflow-hidden bg-white/[0.03] border border-white/5 rounded-[40px] aspect-square md:aspect-[1.8/1] transition-all duration-700 hover:border-[var(--gold)]/30 hover:bg-white/[0.06]">
         {/* Number badge */}
-        <div className="absolute top-6 left-6 md:top-8 md:left-8 font-mono text-[10px] uppercase tracking-[0.25em] text-[var(--bone)]/40 z-10">
-          {service.n}
+        <div className="absolute top-8 left-8 font-mono text-[9px] uppercase tracking-[0.3em] text-white/30 z-10">
+          ({service.n})
         </div>
 
-        {/* Content Grid - Left text, Right image */}
-        <div className="relative z-10 h-full grid grid-cols-12 gap-6 p-8 md:p-10">
-          {/* Left side - Text content */}
-          <div className="col-span-12 md:col-span-7 flex flex-col justify-center">
-            <h3 className="font-display text-2xl md:text-3xl lg:text-4xl tracking-tight mb-4 leading-tight">
+        {/* Content Grid */}
+        <div className="relative z-10 h-full flex flex-col md:flex-row items-center p-10 md:p-14 gap-10">
+          {/* Text content */}
+          <div className="flex-1 text-center md:text-left">
+            <h3 className="font-display text-3xl md:text-4xl lg:text-5xl tracking-tighter mb-6 leading-[1.1] text-white">
               {service.title}
             </h3>
 
-            <p className="text-[var(--bone)]/70 text-sm md:text-base leading-relaxed max-w-md">
+            <p className="text-white/40 text-sm md:text-base leading-relaxed max-w-sm mx-auto md:mx-0">
               {service.tagline}
             </p>
           </div>
 
-          {/* Right side - Image */}
-          <div className="col-span-12 md:col-span-5 flex items-center justify-center">
+          {/* Image */}
+          <div className="hidden md:flex flex-1 items-center justify-center h-full">
             {imageUrl && (
-              <div className="relative w-full h-full">
+              <div className="relative w-full h-full transform transition-all duration-700 group-hover:scale-105 group-hover:rotate-3">
                 <Image 
                   src={imageUrl} 
                   alt={service.title}
                   fill
-                  className="object-contain transition-transform duration-700 group-hover:scale-110"
+                  className="object-contain"
                 />
               </div>
             )}
@@ -79,9 +79,9 @@ function ServiceCard({ service }: { service: typeof services[0] }) {
         </div>
       </div>
 
-      <div className="mt-5 flex items-baseline justify-between font-mono text-[10px] uppercase tracking-[0.25em] text-[var(--bone)]/60">
-        <span>{service.n}</span>
-        <span className="text-[var(--ember)]/60 group-hover:text-[var(--ember)] transition-colors">View details →</span>
+      <div className="mt-6 flex items-center justify-between font-mono text-[9px] uppercase tracking-[0.3em] text-white/20 px-4">
+        <span>{service.title}</span>
+        <span className="text-[var(--gold)] group-hover:tracking-[0.4em] transition-all duration-500">Explore Solution →</span>
       </div>
     </Link>
   );

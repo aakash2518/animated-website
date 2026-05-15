@@ -55,11 +55,11 @@ export function FAQ() {
             </div>
           ))}
         </div>
-        <div className="hidden md:block floating">
+        <div className="col-span-12 md:col-span-3 md:order-2 floating">
           <Image 
             src={image6} 
-            alt="" 
-            className="w-full max-w-[300px] h-auto object-contain opacity-50 grayscale hover:grayscale-0 transition-all duration-700"
+            alt="FAQ Illustration" 
+            className="w-full max-w-[500px] h-auto object-contain transition-all duration-700"
           />
         </div>
       </div>

@@ -123,7 +123,7 @@ export function Hero() {
   return (
     <section ref={root} className="relative h-[400vh] w-full bg-black">
       <div ref={containerRef} className="sticky top-0 h-[100vh] w-full overflow-hidden grain">
-        <canvas ref={canvasRef} className="absolute inset-0 h-full w-full object-cover opacity-70" />
+        <canvas ref={canvasRef} className="absolute inset-0 h-full w-full object-cover opacity-70 will-change-transform" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 pointer-events-none" />
 
         <div className="relative z-10 flex h-full flex-col justify-between px-6 md:px-10 pt-32 pb-24">
@@ -133,16 +133,14 @@ export function Hero() {
           </div>
 
           <div className="relative flex-grow flex items-center justify-start">
-            <h1 className="hero-title text-left max-w-4xl">
+            <h1 className="hero-title text-left w-full">
               <div className="text-part-1 opacity-100 absolute inset-0 flex flex-col items-start justify-center pointer-events-none">
-                <span className="block text-4xl md:text-8xl lg:text-9xl font-display leading-[0.95] tracking-tighter uppercase">
-                  Struggling <br />
-                  <span className="hero-italic normal-case tracking-normal">to grow your</span> <br />
-                  business online?
+                <span className="block text-[clamp(2rem,10vw,8rem)] font-display leading-[0.9] tracking-tighter uppercase max-w-[15ch]">
+                  Struggling <span className="hero-italic normal-case tracking-normal text-[var(--gold)]">to grow your</span> business online?
                 </span>
               </div>
               <div className="text-part-2 opacity-0 absolute inset-0 flex flex-col items-start justify-center pointer-events-none">
-                <span className="block text-5xl md:text-9xl lg:text-[10rem] font-display text-gold leading-[0.9] tracking-tighter uppercase italic">
+                <span className="block text-[clamp(3.5rem,15vw,12rem)] font-display text-[var(--gold)] leading-[0.85] tracking-tighter uppercase italic">
                   We fix that.
                 </span>
               </div>

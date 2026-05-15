@@ -13,17 +13,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
   const [showIntro, setShowIntro] = useState(true);
   const [introComplete, setIntroComplete] = useState(false);
 
-  // Check if intro has been shown in this session
-  useEffect(() => {
-    const hasSeenIntro = sessionStorage.getItem("intro-shown");
-    if (hasSeenIntro === "true") {
-      setShowIntro(false);
-      setIntroComplete(true);
-    }
-  }, []);
-
   const handleIntroComplete = () => {
-    sessionStorage.setItem("intro-shown", "true");
     setShowIntro(false);
     setIntroComplete(true);
   };
