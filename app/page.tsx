@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import { Hero } from "@/components/Hero";
 import { Marquee } from "@/components/Marquee";
 import { Stats } from "@/components/Stats";
+import { ImpactText } from "@/components/ImpactText";
 
 // Dynamic imports for components below the fold
 const ServicesHorizontal = dynamic(() => import("@/components/ServicesHorizontal").then(mod => mod.ServicesHorizontal), {
@@ -31,6 +32,7 @@ export default function Home() {
       <Hero />
       <Marquee />
       <Stats />
+      <ImpactText />
       <ServicesHorizontal />
       <PortfolioStack />
       <About />
