@@ -121,10 +121,17 @@ export function Intro({ onComplete }: IntroProps) {
             muted
             playsInline
             preload="auto"
-            onLoadedData={() => {
+            disablePictureInPicture
+            disableRemotePlayback
+            onCanPlayThrough={() => {
               setIsVideoLoaded(true);
               setVideoError(false);
+              if (videoRef.current) {
+                videoRef.current.play().catch(console.error);
+              }
             }}
+            onWaiting={() => setIsVideoLoaded(false)}
+            onPlaying={() => setIsVideoLoaded(true)}
             onEnded={handleVideoEnd}
             onError={handleVideoError}
             initial={{ opacity: 0, scale: 1.05 }}
