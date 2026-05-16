@@ -17,11 +17,11 @@ export function Stats() {
   }, []);
   return (
     <section ref={ref} className="border-y border-border px-6 md:px-10 py-16 md:py-24">
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 md:gap-10">
         {stats.map((s) => (
           <div key={s.label} className="stat-item">
-            <div className="font-display text-6xl md:text-7xl tracking-tight text-[var(--ember)]">{s.n}</div>
-            <div className="mt-3 font-mono text-[10px] uppercase tracking-[0.25em] text-[var(--bone)]/60">{s.label}</div>
+            <div className="font-display text-[clamp(3rem,8vw,5rem)] tracking-tight text-[var(--ember)]">{s.n}</div>
+            <div className="mt-2 font-mono text-[9px] md:text-[10px] uppercase tracking-[0.25em] text-[var(--bone)]/60">{s.label}</div>
           </div>
         ))}
       </div>

@@ -3,9 +3,9 @@
 import { motion } from "framer-motion";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
+import { CTA } from "@/components/CTA";
 import Image from "next/image";
 import image6 from "@/assets/6.webp";
-import image7 from "@/assets/7.webp";
 
 const values = [
   { title: "Trust First", desc: "Building relationships based on honesty and transparency." },
@@ -34,7 +34,8 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="font-display text-5xl md:text-8xl tracking-tighter leading-none mb-12"
+            className="font-display tracking-tighter leading-none mb-12"
+            style={{ fontSize: "clamp(2.5rem, 8vw, 6rem)" }}
           >
             CREATING SOLUTIONS <br />
             THAT <span className="italic text-[var(--gold)]">MAKE A DIFFERENCE</span>
@@ -43,7 +44,8 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="max-w-3xl text-lg md:text-xl text-white/60 leading-relaxed"
+            className="max-w-3xl text-white/60 leading-relaxed"
+            style={{ fontSize: "clamp(1rem, 2.5vw, 1.25rem)" }}
           >
             At Royalfinity Technologies, we do more than provide digital services—we create solutions that genuinely make a difference. With over a decade of hands-on experience, we’ve helped businesses across industries grow, innovate, and succeed in today’s fast-changing digital landscape.
           </motion.p>
@@ -68,7 +70,10 @@ export default function AboutPage() {
           </motion.div>
           <div className="space-y-12">
             <div className="space-y-6">
-              <h2 className="font-display text-4xl md:text-6xl tracking-tight">
+              <h2 
+                className="font-display tracking-tight"
+                style={{ fontSize: "clamp(1.8rem, 4vw, 3.5rem)" }}
+              >
                 Empowering Businesses Through Technology
               </h2>
               <p className="text-white/50 leading-relaxed">
@@ -78,7 +83,7 @@ export default function AboutPage() {
             <div className="p-8 border border-white/5 bg-white/[0.02] rounded-2xl">
               <h3 className="font-display text-2xl text-[var(--gold)] mb-4">Our Mission</h3>
               <p className="text-white/70 italic">
-                "To empower businesses with intelligent technology and carefully crafted strategies that drive measurable results, foster growth, and create lasting impact."
+                &quot;To empower businesses with intelligent technology and carefully crafted strategies that drive measurable results, foster growth, and create lasting impact.&quot;
               </p>
             </div>
           </div>
@@ -88,7 +93,10 @@ export default function AboutPage() {
       {/* Values Grid */}
       <section className="py-32 px-6 md:px-20">
         <div className="max-w-7xl mx-auto">
-          <h2 className="font-display text-4xl md:text-6xl mb-20 text-center tracking-tight">
+          <h2 
+            className="mb-20 text-center tracking-tight font-display"
+            style={{ fontSize: "clamp(2rem, 5vw, 4rem)" }}
+          >
             What <span className="italic text-[var(--gold)]">Drives Us</span> Forward
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -111,25 +119,11 @@ export default function AboutPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-40 px-6 md:px-20 relative overflow-hidden text-center">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-10 pointer-events-none">
-          <Image src={image7} alt="" fill className="object-cover blur-3xl scale-150" />
-        </div>
-        <div className="relative z-10 max-w-4xl mx-auto space-y-12">
-          <h2 className="font-display text-5xl md:text-8xl tracking-tight leading-none">
-            LET'S BUILD THE <br /> <span className="italic text-[var(--gold)]">FUTURE TOGETHER</span>
-          </h2>
-          <p className="text-white/60 text-lg">
-            Whether you’re starting small or scaling globally, our team is ready to support your journey.
-          </p>
-          <a 
-            href="/contact"
-            className="inline-block px-12 py-5 bg-[var(--gold)] text-black font-mono text-xs uppercase tracking-[0.3em] hover:scale-105 transition-transform"
-          >
-            Get Started Now
-          </a>
-        </div>
-      </section>
+      <CTA 
+        title={<>Ready to <span className="italic text-black/80">start?</span></>}
+        subtitle="Whether you’re starting small or scaling globally, our team is ready to support your journey."
+        linkText="Let's build something great →"
+      />
 
       <Footer />
     </main>

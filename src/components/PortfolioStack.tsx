@@ -22,7 +22,7 @@ export function PortfolioStack() {
         trigger: sectionRef.current,
         start: "top top",
         end: () => `+=${cards.length * 100}%`,
-        scrub: 1,
+        scrub: 0.2,
         pin: true,
         anticipatePin: 1,
       }
@@ -61,13 +61,14 @@ export function PortfolioStack() {
       className="relative bg-black min-h-screen overflow-hidden py-20 md:py-32"
     >
       {/* Sticky Header */}
-      <div className="sticky top-20 md:top-24 left-0 w-full text-center z-50 pointer-events-none mb-16 md:mb-24">
+      <div className="sticky top-24 md:top-32 left-0 w-full text-center z-50 pointer-events-none mb-16 md:mb-24">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="font-display text-3xl md:text-5xl lg:text-6xl text-white tracking-tight leading-tight px-6"
+          className="font-display text-white tracking-tight leading-tight px-6"
+          style={{ fontSize: "clamp(1.8rem, 6vw, 4rem)" }}
         >
           Impact of solutions{" "}
           <span className="text-[#D4AF37] italic">like them:</span>
@@ -78,7 +79,7 @@ export function PortfolioStack() {
         {projects.map((project, idx) => (
           <div 
             key={project.n} 
-            className="stack-card absolute w-[90vw] lg:w-[80vw] h-[70vh] lg:h-[75vh] bg-[#0B0B0B] border border-white/10 rounded-[32px] overflow-hidden shadow-2xl flex flex-col lg:flex-row"
+            className="stack-card absolute w-[92vw] lg:w-[80vw] h-[80vh] min-h-[480px] lg:h-[75vh] bg-[#0B0B0B] border border-white/10 rounded-[24px] md:rounded-[32px] overflow-hidden shadow-2xl flex flex-col lg:flex-row"
             style={{ zIndex: idx }}
           >
             {/* Left Side: Image */}
@@ -101,22 +102,25 @@ export function PortfolioStack() {
                   </span>
                 </div>
                 
-                <h3 className="font-display text-4xl lg:text-5xl text-white tracking-tighter mb-4 leading-[1.1]">
+                <h3 
+                  className="font-display text-white tracking-tighter mb-4 leading-[1.1]"
+                  style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}
+                >
                   {project.title}
                 </h3>
                 
-                <p className="text-white/60 text-sm lg:text-base leading-relaxed max-w-sm mb-8">
+                <p className="text-white/60 text-xs md:text-sm lg:text-base leading-relaxed max-w-sm mb-4 md:mb-8">
                   {project.desc}
                 </p>
 
-                <div className="grid grid-cols-2 gap-8 py-8 border-t border-white/5">
+                <div className="grid grid-cols-2 gap-4 md:gap-8 py-4 md:py-8 border-t border-white/5">
                   <div>
-                    <span className="block font-mono text-[9px] uppercase tracking-widest text-white/30 mb-2">Timeline</span>
-                    <span className="font-display text-xl text-white">2.5 Months</span>
+                    <span className="block font-mono text-[8px] md:text-[9px] uppercase tracking-widest text-white/30 mb-1 md:mb-2">Timeline</span>
+                    <span className="font-display text-lg md:text-xl text-white">2.5 Months</span>
                   </div>
                   <div>
-                    <span className="block font-mono text-[9px] uppercase tracking-widest text-white/30 mb-2">Metrics</span>
-                    <span className="font-display text-xl text-[#D4AF37]">70% Growth</span>
+                    <span className="block font-mono text-[8px] md:text-[9px] uppercase tracking-widest text-white/30 mb-1 md:mb-2">Metrics</span>
+                    <span className="font-display text-lg md:text-xl text-[#D4AF37]">70% Growth</span>
                   </div>
                 </div>
               </div>

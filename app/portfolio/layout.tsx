@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Portfolio — RoyalFinity Technologies",
-  description: "Selected work across e-commerce, healthcare, transportation, edtech and fintech.",
+  title: "Portfolio | Our Recent Work",
+  description: "Explore the premium digital solutions we've built for high-end clients across various industries.",
 };
 
 export default function PortfolioLayout({

@@ -62,16 +62,19 @@ const reviews = [
 
 export function ReviewsFloating() {
   return (
-    <section className="relative w-full h-[600px] md:h-[800px] bg-black overflow-hidden py-24 border-t border-white/5">
+    <section className="relative w-full h-[600px] md:h-[800px] bg-black overflow-hidden pt-12 pb-24 border-t border-white/5">
       <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#D4AF37]/10 blur-[120px] rounded-full" />
       </div>
 
-      <div className="relative z-10 px-6 md:px-10 mb-20">
+      <div className="relative z-10 px-6 md:px-10 mb-12">
         <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-[#D4AF37] block mb-4">
           ( Customer Feedback )
         </span>
-        <h2 className="font-display text-4xl md:text-7xl tracking-tighter text-white leading-[0.9]">
+        <h2 
+          className="font-display tracking-tighter text-white leading-[0.9]"
+          style={{ fontSize: "clamp(2rem, 8vw, 6rem)" }}
+        >
           TRUSTED BY <br /> <span className="italic text-[#D4AF37]">LOCAL LEADERS.</span>
         </h2>
       </div>
@@ -96,8 +99,9 @@ export function ReviewsFloating() {
               position: "absolute",
               left: r.x,
               top: r.y,
+              willChange: "transform, opacity",
             }}
-            className="w-[280px] md:w-[320px] p-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl group hover:border-[#D4AF37]/30 transition-colors"
+            className="hidden md:block w-[320px] p-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl group hover:border-[#D4AF37]/30 transition-colors transform-gpu"
           >
             <div className="flex justify-between items-start mb-4">
               <div className="flex flex-col">
@@ -124,6 +128,39 @@ export function ReviewsFloating() {
             </div>
           </motion.div>
         ))}
+        {/* Mobile Reviews Grid */}
+        <div className="flex md:hidden overflow-x-auto gap-6 px-6 pb-12 scrollbar-hide snap-x snap-mandatory pointer-events-auto">
+          {reviews.map((r, i) => (
+            <div
+              key={i}
+              className="shrink-0 w-[85vw] snap-center p-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl"
+            >
+              <div className="flex justify-between items-start mb-4">
+                <div className="flex flex-col">
+                  <span className="font-display text-white text-sm tracking-tight">{r.name}</span>
+                  <span className="font-mono text-[9px] text-white/30 uppercase mt-1">{r.date}</span>
+                </div>
+                <div className="flex gap-0.5">
+                  {[...Array(5)].map((_, starIdx) => (
+                    <Star 
+                      key={starIdx} 
+                      size={10} 
+                      fill={starIdx < r.rating ? "#D4AF37" : "transparent"} 
+                      className={starIdx < r.rating ? "text-[#D4AF37]" : "text-white/20"} 
+                    />
+                  ))}
+                </div>
+              </div>
+              <p className="text-[11px] leading-relaxed text-white/60 font-sans italic">
+                &quot;{r.text}&quot;
+              </p>
+              <div className="mt-4 flex items-center gap-2">
+                <div className="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center text-[10px] font-bold text-white">G</div>
+                <span className="text-[8px] uppercase tracking-widest text-white/40">Verified Google Review</span>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

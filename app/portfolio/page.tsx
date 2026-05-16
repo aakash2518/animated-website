@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { projects } from "@/data/site";
 import { Footer } from "@/components/Footer";
+import { CTA } from "@/components/CTA";
 import Image from "next/image";
 
 if (typeof window !== "undefined") {
@@ -34,8 +35,8 @@ export default function PortfolioPage() {
   return (
     <main ref={ref} className="relative pt-32">
       <section className="px-6 md:px-10 pb-20">
-        <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-[var(--bone)]/60">(Portfolio / 2023 — 2025)</p>
-        <h1 className="mt-6 font-display text-[11vw] md:text-[8vw] leading-[0.85] tracking-[-0.04em]">
+        <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-[var(--bone)]/60">(Portfolio / 2024 — 2026)</p>
+        <h1 className="mt-6 font-display text-[9vw] md:text-[6vw] leading-[0.85] tracking-[-0.04em]">
           Recent <span className="italic text-[var(--ember)]">work.</span>
         </h1>
       </section>
@@ -61,7 +62,7 @@ export default function PortfolioPage() {
               <div className="font-mono text-[10px] uppercase tracking-[0.4em] text-[#D4AF37]">
                 {p.n} / {p.year}
               </div>
-              <h2 className="project-title mt-4 font-display text-4xl md:text-6xl tracking-tighter leading-[0.95] text-white">
+              <h2 className="project-title mt-4 font-display text-3xl md:text-5xl tracking-tighter leading-[0.95] text-white">
                 {p.title}
               </h2>
               <p className="mt-6 text-white/60 leading-relaxed">
@@ -79,6 +80,12 @@ export default function PortfolioPage() {
           </article>
         ))}
       </section>
+
+      <CTA 
+        title={<>HAVE A PROJECT <br /> <span className="italic text-black/80">IN MIND?</span></>}
+        subtitle="Let's transform your vision into a digital reality with our expertise."
+        linkText="Start a Conversation →"
+      />
 
       <Footer />
     </main>

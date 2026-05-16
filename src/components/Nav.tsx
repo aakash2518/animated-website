@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
-import logo from "../assets/logo.png";
+const logo = "/assets/logo.png";
 import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -27,6 +27,7 @@ const links: NavLink[] = [
   { to: "/",         label: "Home"      },
   { to: "/about",    label: "About"     },
   { to: "/services", label: "Services", hasSubmenu: true, submenu: submenuItems },
+  { to: "/blog",     label: "Blog"      },
   { to: "/portfolio",label: "Portfolio" },
   { to: "/teams",    label: "Teams"     },
   { to: "/contact",  label: "Contact"   },
@@ -57,14 +58,16 @@ export function Nav() {
   };
 
   return (
+    <>
     <header
-      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
-        isScrolled ? "bg-[#0A0A0A] py-2 border-b border-white/5 shadow-2xl" : "bg-transparent py-6"
-      } ${isOpen ? "bg-black" : ""}`}
+      className={`fixed top-0 left-0 right-0 z-[999] transition-all duration-500 ${
+        isScrolled ? "bg-[#0A0A0A]/95 backdrop-blur-md py-3 border-b border-white/5 shadow-2xl" : "bg-transparent py-5"
+      } ${isOpen ? "!bg-[#0A0A0A] !py-4" : ""}`}
+      style={{ padding: `clamp(0.75rem, 2vw, 1.25rem) clamp(1rem, 4vw, 3rem)` }}
     >
-      <div className="flex items-center justify-between px-6 md:px-10">
+      <div className="flex items-center justify-between w-full max-w-[1400px] mx-auto">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 group relative z-50">
+        <Link href="/" className="flex items-center gap-3 group relative z-50" onClick={() => setIsOpen(false)}>
           <Image
             src={logo}
             alt="RoyalFinity"
@@ -72,13 +75,15 @@ export function Nav() {
             height={64}
             className="w-8 h-8 object-contain transition-transform duration-500 group-hover:scale-110"
           />
-          <span className="font-display text-xl tracking-tight text-[var(--gold)]">
+          <span className={`font-display tracking-tight text-[var(--gold)] ${isOpen ? "hidden" : "hidden sm:block"}`} style={{ fontSize: "clamp(0.9rem, 2.5vw, 1.1rem)" }}>
             RoyalFinity Technologies
           </span>
         </Link>
 
-        {/* ── Desktop Nav ── */}
-        <nav className="nav-desktop items-center gap-8 text-xs uppercase tracking-[0.2em] text-[var(--bone)] font-mono">
+        <nav 
+          className={`nav-desktop hidden lg:flex items-center gap-6 xl:gap-8 uppercase tracking-[0.2em] text-[var(--bone)] font-mono ${isOpen ? "hidden" : "flex"}`}
+          style={{ fontSize: "clamp(0.7rem, 1.5vw, 0.85rem)" }}
+        >
           {links.map((l) => (
             <div
               key={l.label}
@@ -133,7 +138,8 @@ export function Nav() {
         {/* Phone (Desktop) */}
         <a
           href="tel:+919211816999"
-          className="nav-desktop text-xs uppercase tracking-[0.2em] text-[var(--bone)] font-mono"
+          className="nav-desktop hidden md:block uppercase tracking-[0.2em] text-[var(--bone)] font-mono"
+          style={{ fontSize: "clamp(0.7rem, 1.5vw, 0.85rem)" }}
         >
           (+91 92118 16999)
         </a>
@@ -149,67 +155,107 @@ export function Nav() {
         </button>
       </div>
 
-      {/* ── Mobile Menu ── */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, clipPath: "circle(0% at 100% 0%)" }}
-            animate={{ opacity: 1, clipPath: "circle(150% at 100% 0%)" }}
-            exit={{ opacity: 0, clipPath: "circle(0% at 100% 0%)" }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 bg-black/95 backdrop-blur-2xl z-40 flex flex-col md:hidden"
-          >
-            <nav className="flex flex-col items-center justify-center flex-1 gap-8 overflow-y-auto pt-32 pb-20 px-10">
-              {links.map((l, i) => (
-                <motion.div
-                  key={l.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 + i * 0.1 }}
-                  className="w-full text-center group"
-                >
-                  <Link
-                    href={l.to}
-                    onClick={() => !l.hasSubmenu && setIsOpen(false)}
-                    className={`block font-display text-4xl uppercase tracking-tighter transition-all duration-500 hover:text-[var(--gold)] ${pathname === l.to ? "text-[var(--gold)]" : "text-white"}`}
-                  >
-                    {l.label}
-                  </Link>
+    </header>
 
+    {/* ── Mobile Menu (Outside header for full viewport control) ── */}
+    <AnimatePresence>
+      {isOpen && (
+        <>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/90 backdrop-blur-md z-[1000] lg:hidden"
+            onClick={() => setIsOpen(false)}
+          />
+          <motion.div
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed top-0 right-0 bottom-0 w-[85%] max-w-[400px] bg-[#0A0A0A] z-[1001] flex flex-col lg:hidden border-l border-white/10"
+          >
+            {/* Menu Header */}
+            <div className="flex items-center justify-between p-6 border-b border-white/5">
+              <Image
+                src={logo}
+                alt="RoyalFinity"
+                width={40}
+                height={40}
+                className="w-10 h-10 object-contain"
+              />
+              <button 
+                onClick={() => setIsOpen(false)}
+                className="p-2 text-white/70 hover:text-[var(--gold)] transition-colors"
+              >
+                <X size={24} />
+              </button>
+            </div>
+
+            {/* Links List */}
+            <nav className="flex flex-col flex-1 overflow-y-auto">
+              {links.map((l, i) => (
+                <div key={l.label} className="border-b border-white/5">
+                  <div className="flex items-center justify-between">
+                    <Link
+                      href={l.to}
+                      onClick={() => !l.hasSubmenu && setIsOpen(false)}
+                      className={`flex-1 py-6 px-8 text-lg font-sans tracking-wide transition-colors ${pathname === l.to ? "text-[var(--gold)]" : "text-white/80 hover:text-white"}`}
+                    >
+                      {l.label}
+                    </Link>
+                    {l.hasSubmenu && (
+                      <button 
+                        onClick={() => setShowSubmenu(!showSubmenu)}
+                        className="px-8 py-6 text-white/40"
+                      >
+                        <span className="text-2xl leading-none">{showSubmenu ? "−" : "+"}</span>
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Mobile Submenu */}
                   {l.hasSubmenu && (
-                    <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 mt-6 max-w-xs mx-auto">
-                      {l.submenu.map((item) => (
-                        <button
-                          key={item.slug}
-                          type="button"
-                          onClick={() => goToService(item.slug)}
-                          className="text-[10px] uppercase tracking-[0.2em] text-white/40 hover:text-[#D4AF37] transition-colors cursor-pointer"
+                    <AnimatePresence>
+                      {showSubmenu && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          className="bg-white/[0.02] overflow-hidden"
                         >
-                          {item.label}
-                        </button>
-                      ))}
-                    </div>
+                          <div className="flex flex-col py-2 px-8 gap-4 pb-6">
+                            {l.submenu.map((item) => (
+                              <button
+                                key={item.slug}
+                                onClick={() => goToService(item.slug)}
+                                className="text-left text-sm text-white/40 hover:text-[var(--gold)] transition-colors py-1"
+                              >
+                                {item.label}
+                              </button>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   )}
-                </motion.div>
+                </div>
               ))}
             </nav>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
-              className="p-10 border-t border-white/5 flex flex-col items-center gap-4 font-mono text-[9px] uppercase tracking-[0.2em] text-white/40"
-            >
-              <div className="flex gap-10">
-                <a href="tel:+919211816999" className="hover:text-[var(--gold)] transition-colors">
-                  (+91 92118 16999)
-                </a>
-                <span>Faridabad / India</span>
-              </div>
-            </motion.div>
+            {/* Bottom Info */}
+            <div className="p-8 border-t border-white/5 bg-black/20">
+              <a href="tel:+919211816999" className="text-[var(--gold)] font-mono text-xs tracking-widest">
+                (+91 92118 16999)
+              </a>
+              <p className="text-white/20 text-[10px] uppercase tracking-widest mt-2">
+                Faridabad / India
+              </p>
+            </div>
           </motion.div>
-        )}
-      </AnimatePresence>
-    </header>
+        </>
+      )}
+    </AnimatePresence>
+    </>
   );
 }

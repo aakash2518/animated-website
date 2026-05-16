@@ -19,39 +19,55 @@ export function WhatWeOffer() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  // Use IntersectionObserver to start loading only when near viewport
   useEffect(() => {
-    if (!containerRef.current || !canvasRef.current) return;
+    if (!containerRef.current) return;
+    
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        setShouldLoad(true);
+        observer.disconnect();
+      }
+    }, { rootMargin: "600px" }); // Start loading when 600px away
+
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!shouldLoad || !containerRef.current || !canvasRef.current) return;
 
     const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d", { alpha: false }); // Optimize for performance
     if (!ctx) return;
 
     const frameCount = 135;
     const frames: HTMLImageElement[] = [];
     let loadedCount = 0;
     
-    // Preload frames
-    for (let i = 0; i < frameCount; i++) {
-      const img = new Image();
-      const padded = String(i).padStart(3, "0");
-      img.src = `/assets/whatweoffer/frame_${padded}_delay-0.041s.webp`;
-      img.onload = () => {
-        loadedCount++;
-        if (loadedCount === 1) render(0); // Render first frame as soon as it's ready
-      };
-      frames.push(img);
-    }
-
     const render = (index: number) => {
       const img = frames[index];
       if (img && img.complete) {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
         const scale = Math.max(canvas.width / img.width, canvas.height / img.height);
         const x = (canvas.width - img.width * scale) / 2;
         const y = (canvas.height - img.height * scale) / 2;
         ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
       }
     };
+
+    // Preload frames in batches or use a more efficient way
+    for (let i = 0; i < frameCount; i++) {
+      const img = new Image();
+      const padded = String(i).padStart(3, "0");
+      img.src = `/assets/whatweoffer/frame_${padded}_delay-0.041s.webp`;
+      img.onload = () => {
+        loadedCount++;
+        if (loadedCount === 1) render(0); 
+      };
+      frames.push(img);
+    }
 
     const updateSize = () => {
       canvas.width = window.innerWidth;
@@ -60,7 +76,7 @@ export function WhatWeOffer() {
       render(Math.floor(progress * (frameCount - 1)));
     };
 
-    window.addEventListener("resize", updateSize);
+    window.addEventListener("resize", updateSize, { passive: true });
     updateSize();
 
     const st = ScrollTrigger.create({
@@ -69,20 +85,20 @@ export function WhatWeOffer() {
       start: "top top",
       end: "+=300%",
       pin: true,
-      scrub: 0.1, // Faster scrub for better responsiveness
+      scrub: 0.2, 
       onUpdate: (self) => {
         const frameIndex = Math.min(
           frameCount - 1,
           Math.floor(self.progress * frameCount)
         );
-        render(frameIndex);
+        requestAnimationFrame(() => render(frameIndex));
 
         // Update text index
         const textIdx = Math.min(
           offerings.length - 1,
           Math.floor(self.progress * offerings.length)
         );
-        setActiveIndex(textIdx);
+        if (textIdx !== activeIndex) setActiveIndex(textIdx);
       },
     });
 
@@ -91,7 +107,7 @@ export function WhatWeOffer() {
       window.removeEventListener("resize", updateSize);
     };
 
-  }, []);
+  }, [shouldLoad, activeIndex]);
 
   return (
     <section ref={containerRef} className="relative h-[100svh] w-full bg-black overflow-hidden">
@@ -118,10 +134,16 @@ export function WhatWeOffer() {
                     : "opacity-0 translate-y-12"
                 }`}
               >
-                <h2 className="font-display text-[clamp(2.5rem,8vw,6rem)] tracking-tighter leading-[0.9] mb-6">
+                <h2 
+                  className="font-display tracking-tighter leading-[0.9] mb-6"
+                  style={{ fontSize: "clamp(2.5rem, 8vw, 5rem)" }}
+                >
                   {offering.title}
                 </h2>
-                <p className="text-base md:text-2xl text-bone/60 max-w-xl leading-relaxed">
+                <p 
+                  className="text-bone/60 max-w-xl leading-relaxed"
+                  style={{ fontSize: "clamp(1rem, 3vw, 1.5rem)" }}
+                >
                   {offering.desc}
                 </p>
               </div>

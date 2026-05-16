@@ -1,0 +1,29 @@
+[
+  {
+    "slug": "design-systems-for-scale",
+    "title": "Building Design Systems for Global Scale",
+    "date": "May 08, 2026",
+    "category": "UI/UX Design",
+    "excerpt": "A deep dive into creating scalable, maintainable design languages for large organizations.",
+    "readTime": "8 min read",
+    "img": "/assets/p3.png"
+  },
+  {
+    "slug": "nextjs-performance-optimization",
+    "title": "Next.js 15 Performance Optimization Guide",
+    "date": "April 25, 2026",
+    "category": "Web Development",
+    "excerpt": "Advanced techniques to make your Next.js applications lightning fast and SEO friendly.",
+    "readTime": "12 min read",
+    "img": "/assets/p1.png"
+  },
+  {
+    "slug": "branding-in-digital-age",
+    "title": "Branding Strategies for the Digital-First Era",
+    "date": "April 15, 2026",
+    "category": "Branding",
+    "excerpt": "Why traditional branding is failing and how to build a brand that thrives online.",
+    "readTime": "6 min read",
+    "img": "/assets/p5.png"
+  }
+]

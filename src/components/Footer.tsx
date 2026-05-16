@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { contact } from "@/data/site";
 import Image from "next/image";
-import logo from "../assets/logo.png";
+const logo = "/assets/logo.png";
 import footerImg from "../assets/footer.webp";
 import { Mail, Phone, MapPin } from "lucide-react";
 
@@ -20,8 +20,8 @@ export function Footer() {
   return (
     <footer className="relative bg-black pt-32 pb-12 overflow-hidden border-t border-white/5">
 
-      <div className="px-6 md:px-10 relative z-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8">
+      <div className="responsive-container relative z-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-y-12 gap-x-8">
           
           {/* Column 1: Brand */}
           <div className="lg:col-span-1">
@@ -34,12 +34,15 @@ export function Footer() {
                   height={40}
                   className="h-10 w-auto"
                 />
-                <span className="font-display text-xl tracking-tight text-[var(--gold)]">
+                <span 
+                  className="font-display tracking-tight text-[var(--gold)]"
+                  style={{ fontSize: "clamp(1.1rem, 2.5vw, 1.5rem)" }}
+                >
                   RoyalFinity
                 </span>
               </div>
             </Link>
-            <p className="text-white/50 text-xs leading-relaxed max-w-xs">
+            <p className="text-white/50 text-[11px] leading-relaxed max-w-xs">
               We create brands that communicate and connect with people to inspire them. We specialize in various creative and sustainable branding solutions such as Digital Marketing, Corporate Identity Design, Website Designing, and many more.
             </p>
           </div>
@@ -100,13 +103,13 @@ export function Footer() {
           </div>
 
           {/* Column 5: Social/Trust Illustration */}
-          <div className="relative h-80 -mt-20">
-            <div className="relative h-full overflow-hidden group">
+          <div className="relative h-64 lg:h-80 -mt-10 lg:-mt-20">
+            <div className="relative h-full overflow-hidden group flex justify-center lg:justify-end">
               <Image 
                 src={footerImg} 
                 alt="Working" 
-                fill
-                className="object-contain transition-transform duration-700 group-hover:scale-105"
+                className="object-contain transition-transform duration-700 group-hover:scale-105 mx-auto lg:mx-0"
+                style={{ width: "clamp(150px, 30vw, 350px)", height: "auto" }}
               />
             </div>
           </div>

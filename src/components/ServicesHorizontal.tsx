@@ -41,32 +41,38 @@ function ServiceCard({ service }: { service: typeof services[0] }) {
   return (
     <Link
       href={`/services/${slug}`}
-      className="shrink-0 w-[85vw] md:w-[60vw] lg:w-[50vw] group block snap-start"
+      className="shrink-0 w-[88vw] md:w-[65vw] lg:w-[50vw] group block snap-start"
       data-cursor
     >
-      <div className="relative overflow-hidden bg-white/[0.03] border border-white/5 rounded-[40px] aspect-square md:aspect-[1.8/1] transition-all duration-700 hover:border-[var(--gold)]/30 hover:bg-white/[0.06]">
+      <div className="relative overflow-hidden bg-white/[0.03] border border-white/5 rounded-[32px] md:rounded-[40px] aspect-[0.75/1] md:aspect-[1.8/1] transition-all duration-700 hover:border-[var(--gold)]/30 hover:bg-white/[0.06]">
         {/* Number badge */}
         <div className="absolute top-8 left-8 font-mono text-[9px] uppercase tracking-[0.3em] text-white/30 z-10">
           ({service.n})
         </div>
-
+ 
         {/* Content Grid */}
-        <div className="relative z-10 h-full flex flex-col md:flex-row items-center p-10 md:p-14 gap-10">
+        <div className="relative z-10 h-full flex flex-col md:flex-row items-center p-8 md:p-14 gap-8 md:gap-10">
           {/* Text content */}
-          <div className="flex-1 text-center md:text-left">
-            <h3 className="font-display text-3xl md:text-4xl lg:text-5xl tracking-tighter mb-6 leading-[1.1] text-white">
+          <div className="flex-1 text-center md:text-left mt-8 md:mt-0">
+            <h3 
+              className="font-display tracking-tighter mb-4 leading-[1.1] text-white"
+              style={{ fontSize: "clamp(1.5rem, 5vw, 2.5rem)" }}
+            >
               {service.title}
             </h3>
-
-            <p className="text-white/40 text-sm md:text-base leading-relaxed max-w-sm mx-auto md:mx-0">
+ 
+            <p 
+              className="text-white/40 leading-relaxed max-w-sm mx-auto md:mx-0"
+              style={{ fontSize: "clamp(0.95rem, 3vw, 1.1rem)" }}
+            >
               {service.tagline}
             </p>
           </div>
-
+ 
           {/* Image */}
-          <div className="hidden md:flex flex-1 items-center justify-center h-full">
+          <div className="flex flex-1 items-center justify-center h-full w-full max-h-[180px] md:max-h-none">
             {imageUrl && (
-              <div className="relative w-full h-full transform transition-all duration-700 group-hover:scale-105 group-hover:rotate-3">
+              <div className="relative w-4/5 h-4/5 md:w-full md:h-full transform transition-all duration-700 group-hover:scale-105 group-hover:rotate-3">
                 <Image 
                   src={imageUrl} 
                   alt={service.title}
@@ -104,10 +110,10 @@ export function ServicesHorizontal() {
 
   return (
     <section id="services" className="relative py-24 md:py-32 bg-black overflow-hidden">
-      <div className="px-6 md:px-10 mb-12 flex justify-between items-end font-mono text-[10px] uppercase tracking-[0.25em] text-[var(--bone)]/70">
+      <div className="px-6 md:px-10 mb-12 flex justify-between items-end font-mono uppercase tracking-[0.25em] text-[var(--bone)]/70" style={{ fontSize: "clamp(0.65rem, 1.5vw, 0.8rem)" }}>
         <div>
           <span className="block mb-2">(What we do)</span>
-          <h2 className="font-display text-4xl md:text-6xl tracking-tight text-[var(--bone)]">Services</h2>
+          <h2 className="font-display tracking-tight text-[var(--bone)]" style={{ fontSize: "clamp(2rem, 6vw, 4.5rem)" }}>Services</h2>
         </div>
         <span className="hidden md:block">↔ Scroll horizontally</span>
       </div>
@@ -117,17 +123,20 @@ export function ServicesHorizontal() {
         className="flex items-center gap-8 md:gap-12 px-6 md:px-10 overflow-x-auto pb-8 scrollbar-hide snap-x snap-mandatory"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
-        <div className="shrink-0 w-[80vw] md:w-[40vw] snap-start">
-          <p className="font-display text-5xl md:text-7xl leading-[1.1] tracking-tight">
+        <div className="shrink-0 w-full md:w-[45vw] lg:w-[35vw] snap-start pr-8 mb-12 md:mb-0 hidden md:block">
+          <p className="font-display leading-[1] tracking-tight" style={{ fontSize: "clamp(2rem, 6vw, 4rem)" }}>
             Struggling <span className="text-[var(--ember)] italic">to grow</span>
           </p>
-          <p className="font-display text-5xl md:text-7xl leading-[1.1] tracking-tight">
+          <p className="font-display leading-[1] tracking-tight" style={{ fontSize: "clamp(2rem, 6vw, 4rem)" }}>
             your business online?
           </p>
-          <p className="font-display text-5xl md:text-7xl leading-[1.1] tracking-tight mt-6">
+          <p className="font-display leading-[1] tracking-tight mt-4 md:mt-6" style={{ fontSize: "clamp(2rem, 6vw, 4rem)" }}>
             <span className="text-[var(--ember)]">We fix that.</span>
           </p>
-          <p className="mt-8 max-w-md text-[var(--bone)]/60 text-sm md:text-base">
+          <p 
+            className="mt-6 md:mt-8 max-w-md text-[var(--bone)]/60 leading-relaxed"
+            style={{ fontSize: "clamp(0.875rem, 2.5vw, 1.05rem)" }}
+          >
             Full-stack digital services engineered to move real metrics — from websites and apps to marketing and automation.
           </p>
         </div>

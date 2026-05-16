@@ -1,17 +1,20 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Intro } from "@/components/Intro";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { Cursor } from "@/components/Cursor";
 import { Nav } from "@/components/Nav";
+import { usePathname } from "next/navigation";
 
 import { VisibilityContext } from "@/context/VisibilityContext";
 
 export function Providers({ children }: { children: React.ReactNode }) {
-  const [showIntro, setShowIntro] = useState(true);
-  const [introComplete, setIntroComplete] = useState(false);
+  const pathname = usePathname();
+  const isAdmin = pathname === "/admin";
+  const [showIntro, setShowIntro] = useState(!isAdmin);
+  const [introComplete, setIntroComplete] = useState(isAdmin);
 
   const handleIntroComplete = () => {
     setShowIntro(false);
@@ -29,13 +32,13 @@ export function Providers({ children }: { children: React.ReactNode }) {
         </AnimatePresence>
 
         {/* Main Content */}
-        <div className={!introComplete ? "invisible h-0 overflow-hidden" : ""}>
-          <SmoothScroll />
-          <Cursor />
-          <Nav />
+        <div className={!introComplete && !isAdmin ? "invisible h-0 overflow-hidden" : ""}>
+          {!isAdmin && <SmoothScroll />}
+          {!isAdmin && <Cursor />}
+          {!isAdmin && <Nav />}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: introComplete ? 1 : 0 }}
+            initial={isAdmin ? { opacity: 1 } : { opacity: 0 }}
+            animate={{ opacity: (introComplete || isAdmin) ? 1 : 0 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="w-full"
           >

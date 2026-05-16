@@ -250,6 +250,8 @@ export const serviceDetails: Record<string, {
   title: string;
   desc: string;
   features: { icon: string; label: string; sub: string }[];
+  whyChooseUs: { title: string; desc: string }[];
+  faqs: { q: string; a: string }[];
 }> = {
   "01": {
     badge: "PROFESSIONAL WEBSITE DEVELOPMENT",
@@ -260,6 +262,15 @@ export const serviceDetails: Record<string, {
       { icon: "🟢", label: "Node.js", sub: "Server Power" },
       { icon: "🗄️", label: "Database", sub: "Secure Storage" },
       { icon: "☁️", label: "Cloud", sub: "Scalable Deploy" }
+    ],
+    whyChooseUs: [
+      { title: "SEO Optimized", desc: "We build websites that search engines love, ensuring high visibility." },
+      { title: "Conversion Focus", desc: "Every element is designed to turn visitors into paying customers." },
+      { title: "Mobile First", desc: "Perfect experience across all devices and screen sizes." }
+    ],
+    faqs: [
+      { q: "How long does it take to build a website?", a: "Typically 4-8 weeks depending on complexity and features." },
+      { q: "Will my website be mobile-friendly?", a: "Yes, 100% responsive design is our standard for every project." }
     ]
   },
   "02": {
@@ -267,10 +278,19 @@ export const serviceDetails: Record<string, {
     title: "Revolutionary Mobile App Development Services",
     desc: "Create powerful, intuitive mobile applications that engage users and drive business success. From concept to deployment, we build apps that make a difference.",
     features: [
-      { icon: "🍎", label: "iOS Apps", sub: "Native iPhone & iPad" },
-      { icon: "🤖", label: "Android Apps", sub: "Google Play Store" },
-      { icon: "⚡", label: "Cross-Platform", sub: "React Native & Flutter" },
-      { icon: "🌐", label: "PWA", sub: "Progressive Web Apps" }
+      { icon: "apple-logo", label: "iOS Apps", sub: "Native iPhone & iPad" },
+      { icon: "android-logo", label: "Android Apps", sub: "Google Play Store" },
+      { icon: "cross-logo", label: "Cross-Platform", sub: "React Native & Flutter" },
+      { icon: "pwa-logo", label: "PWA", sub: "Progressive Web Apps" }
+    ],
+    whyChooseUs: [
+      { title: "Native Performance", desc: "Apps optimized for speed and smooth user interactions." },
+      { title: "Scalable Backend", desc: "Robust architecture that grows with your user base." },
+      { title: "App Store Ready", desc: "We handle the entire submission and approval process." }
+    ],
+    faqs: [
+      { q: "Can you build for both iOS and Android?", a: "Yes, we specialize in both native and cross-platform development." },
+      { q: "Do you provide app maintenance?", a: "Absolutely, we offer ongoing support and update services." }
     ]
   },
   "03": {
@@ -282,6 +302,15 @@ export const serviceDetails: Record<string, {
       { icon: "📊", label: "Analytics", sub: "Data Insights" },
       { icon: "📱", label: "Social Media", sub: "Brand Engagement" },
       { icon: "🔍", label: "SEO", sub: "Search Visibility" }
+    ],
+    whyChooseUs: [
+      { title: "Data-Driven", desc: "Decisions based on real metrics, not just intuition." },
+      { title: "High ROI", desc: "Strategies focused on maximum return on your marketing spend." },
+      { title: "Full Transparency", desc: "Detailed reporting so you know exactly where your budget goes." }
+    ],
+    faqs: [
+      { q: "How soon will I see results?", a: "Paid ads show results instantly; SEO typically takes 3-6 months." },
+      { q: "Do you manage social media accounts?", a: "Yes, from content creation to community engagement." }
     ]
   },
   "09": {
@@ -293,6 +322,15 @@ export const serviceDetails: Record<string, {
       { icon: "📱", label: "UI Design", sub: "Interface Magic" },
       { icon: "💡", label: "UX Research", sub: "User Experience" },
       { icon: "🖼️", label: "Branding", sub: "Brand Identity" }
+    ],
+    whyChooseUs: [
+      { title: "User Centric", desc: "Designs that prioritize the needs and habits of your users." },
+      { title: "Unique Identity", desc: "Bespoke designs that make your brand stand out from the crowd." },
+      { title: "Iterative Process", desc: "Collaborative design loops to ensure the perfect final product." }
+    ],
+    faqs: [
+      { q: "Do you provide source files?", a: "Yes, you will receive all original design files upon completion." },
+      { q: "How many revisions do I get?", a: "We offer multiple revision rounds until you are 100% satisfied." }
     ]
   },
   "10": {
@@ -304,6 +342,15 @@ export const serviceDetails: Record<string, {
       { icon: "💼", label: "Custom Software", sub: "Tailored Solutions" },
       { icon: "📱", label: "Mobile Apps", sub: "On-the-Go Access" },
       { icon: "☁️", label: "Cloud Integration", sub: "Scalable Infrastructure" }
+    ],
+    whyChooseUs: [
+      { title: "Business Alignment", desc: "Software that fits your workflows, not the other way around." },
+      { title: "Security First", desc: "Enterprise-grade security to protect your sensitive data." },
+      { title: "Seamless Integration", desc: "Connect with your existing tools and platforms easily." }
+    ],
+    faqs: [
+      { q: "Can you customize existing ERPs?", a: "Yes, we can modify or build modules for major ERP systems." },
+      { q: "Is training provided for the staff?", a: "Yes, we provide complete onboarding and training sessions." }
     ]
   },
   "11": {
@@ -315,6 +362,15 @@ export const serviceDetails: Record<string, {
       { icon: "💰", label: "Cost Reduction", sub: "Save 60% annually" },
       { icon: "🎯", label: "Error-Free", sub: "99.9% accuracy" },
       { icon: "⚡", label: "24/7 Operation", sub: "Always working" }
+    ],
+    whyChooseUs: [
+      { title: "Zero Error Rate", desc: "Automate repetitive tasks to eliminate human errors." },
+      { title: "Resource Savings", desc: "Free up your team to focus on high-value strategic work." },
+      { title: "Rapid Deployment", desc: "Get automated workflows running in as little as 2 weeks." }
+    ],
+    faqs: [
+      { q: "Can automation replace my team?", a: "No, it empowers them by removing boring, repetitive tasks." },
+      { q: "What processes can be automated?", a: "Almost anything from invoicing to customer support workflows." }
     ]
   }
 };

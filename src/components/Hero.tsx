@@ -41,14 +41,13 @@ export function Hero() {
     if (!isVisible || !imagesLoaded || !canvasRef.current) return;
 
     const canvas = canvasRef.current;
-    const context = canvas.getContext("2d");
+    const context = canvas.getContext("2d", { alpha: false });
     if (!context) return;
 
     const render = (index: number) => {
       const img = frames.current[index];
       if (!img) return;
 
-      // Handle "cover" object-fit behavior for canvas
       const canvasWidth = canvas.width;
       const canvasHeight = canvas.height;
       const imgWidth = img.width;
@@ -60,7 +59,6 @@ export function Hero() {
       const x = (canvasWidth - newWidth) / 2;
       const y = (canvasHeight - newHeight) / 2;
 
-      context.clearRect(0, 0, canvasWidth, canvasHeight);
       context.drawImage(img, x, y, newWidth, newHeight);
     };
 
@@ -72,7 +70,7 @@ export function Hero() {
       render(Math.floor(obj.frame));
     };
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", handleResize, { passive: true });
     handleResize();
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
@@ -80,7 +78,7 @@ export function Hero() {
           trigger: root.current,
           start: "top top",
           end: "bottom bottom",
-          scrub: true,
+          scrub: 0.2,
           pin: containerRef.current,
         },
       });
@@ -88,25 +86,22 @@ export function Hero() {
       // Animate frames
       tl.to(obj, {
         frame: frameCount - 1,
-        snap: "frame",
         ease: "none",
         onUpdate: () => render(Math.floor(obj.frame)),
       }, 0);
 
-      // Text 1: "Struggling to grow your business online?"
+      // Text animations
       tl.to(".text-part-1", 
         { opacity: 0, y: -50, duration: 0.2 }, 
         0.35
       );
 
-      // Text 2: "We fix that."
       tl.fromTo(".text-part-2", 
         { opacity: 0, y: 50 }, 
         { opacity: 1, y: 0, duration: 0.2 }, 
         0.6
       );
       
-      // Secondary info reveal
       tl.fromTo(".hero-footer",
         { opacity: 0 },
         { opacity: 1, duration: 0.1 },
@@ -122,37 +117,43 @@ export function Hero() {
 
   return (
     <section ref={root} className="relative h-[400vh] w-full bg-black">
-      <div ref={containerRef} className="sticky top-0 h-[100vh] w-full overflow-hidden grain">
+      <div ref={containerRef} className="sticky top-0 h-[85svh] md:h-[100svh] w-full overflow-hidden grain">
         <canvas ref={canvasRef} className="absolute inset-0 h-full w-full object-cover opacity-70 will-change-transform" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 pointer-events-none" />
 
         <div className="relative z-10 flex h-full flex-col justify-between px-6 md:px-10 pt-32 pb-24">
-          <div className="flex justify-between items-start font-mono text-[10px] uppercase tracking-[0.25em] text-[var(--bone)]/70">
+          <div className="flex justify-between items-start font-mono uppercase tracking-[0.25em] text-[var(--bone)]/70" style={{ fontSize: "clamp(0.6rem, 1.5vw, 0.75rem)" }}>
             <span>Faridabad / India</span>
-            <span className="text-right max-w-[18ch] hidden sm:block">RoyalFinity Technologies — let&apos;s grow together</span>
+            <span className="text-right max-w-[18ch] hidden md:block text-xs">RoyalFinity Technologies — let&apos;s grow together</span>
           </div>
 
-          <div className="relative flex-grow flex items-center justify-start">
+          <div className="relative flex-grow flex items-center justify-start py-8 md:py-0">
             <h1 className="hero-title text-left w-full">
               <div className="text-part-1 opacity-100 absolute inset-0 flex flex-col items-start justify-center pointer-events-none">
-                <span className="block text-[clamp(2rem,10vw,8rem)] font-display leading-[0.9] tracking-tighter uppercase max-w-[15ch]">
-                  Struggling <span className="hero-italic normal-case tracking-normal text-[var(--gold)]">to grow your</span> business online?
+                <span 
+                  className="block font-display leading-[1.1] tracking-tighter uppercase max-w-[18ch]"
+                  style={{ fontSize: "clamp(1.8rem, 5.5vw, 5rem)" }}
+                >
+                  Struggling <span className="hero-italic normal-case tracking-normal text-[var(--gold)]" style={{ fontSize: "clamp(1.5rem, 4.5vw, 4rem)" }}>to grow your</span> business online?
                 </span>
               </div>
               <div className="text-part-2 opacity-0 absolute inset-0 flex flex-col items-start justify-center pointer-events-none">
-                <span className="block text-[clamp(3.5rem,15vw,12rem)] font-display text-[var(--gold)] leading-[0.85] tracking-tighter uppercase italic">
+                <span 
+                  className="block font-display text-[var(--gold)] leading-[0.9] tracking-tighter uppercase italic"
+                  style={{ fontSize: "clamp(2.5rem, 8vw, 6.5rem)" }}
+                >
                   We fix that.
                 </span>
               </div>
             </h1>
           </div>
 
-          <div className="hero-footer opacity-0 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-8 sm:gap-6">
-            <div className="flex flex-col xs:flex-row gap-3 w-full sm:w-auto">
-              <Link href="/contact" className="px-6 py-3 bg-[var(--gold)] text-[var(--accent-foreground)] text-center text-xs uppercase tracking-[0.2em] font-mono hover:opacity-90 transition shadow-[0_0_20px_rgba(212,175,55,0.2)]">
+          <div className="hero-footer opacity-0 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 sm:gap-8">
+            <div className="flex flex-col xs:flex-row gap-4 w-full sm:w-auto">
+              <Link href="/contact" className="px-8 py-4 bg-[var(--gold)] text-[var(--accent-foreground)] text-center text-[10px] sm:text-xs uppercase tracking-[0.2em] font-mono hover:opacity-90 transition shadow-[0_0_20px_rgba(212,175,55,0.2)]">
                 Start a project →
               </Link>
-              <Link href="/services" className="px-6 py-3 border border-[var(--bone)]/30 text-[var(--bone)] text-center text-xs uppercase tracking-[0.2em] font-mono hover:border-[var(--gold)] hover:text-[var(--gold)] transition">
+              <Link href="/services" className="px-8 py-4 border border-[var(--bone)]/30 text-[var(--bone)] text-center text-[10px] sm:text-xs uppercase tracking-[0.2em] font-mono hover:border-[var(--gold)] hover:text-[var(--gold)] transition">
                 Explore services
               </Link>
             </div>
