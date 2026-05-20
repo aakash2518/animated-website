@@ -80,7 +80,7 @@ export function PortfolioStack() {
       </div>
 
       {/* Stack Cards Container */}
-      <div className="relative w-full h-[58vh] md:h-[60vh] lg:h-[62vh] flex items-center justify-center shrink-0 overflow-hidden">
+      <div className="relative w-full h-[70vh] md:h-[60vh] lg:h-[62vh] flex items-center justify-center shrink-0 overflow-hidden">
         {projects.map((project, idx) => (
           <div 
             key={project.n} 
@@ -88,7 +88,7 @@ export function PortfolioStack() {
             style={{ zIndex: idx }}
           >
             {/* Left Side: Image */}
-            <div className="w-full lg:w-3/5 h-1/2 lg:h-full relative overflow-hidden group">
+            <div className="w-full lg:w-3/5 h-[40%] lg:h-full relative overflow-hidden group">
               <Image 
                 src={project.img} 
                 alt={project.title}
@@ -99,23 +99,23 @@ export function PortfolioStack() {
             </div>
 
             {/* Right Side: Info */}
-            <div className="w-full lg:w-2/5 h-1/2 lg:h-full p-6 md:p-8 lg:p-10 flex flex-col justify-between">
+            <div className="w-full lg:w-2/5 h-[60%] lg:h-full p-5 sm:p-6 md:p-8 lg:p-10 flex flex-col justify-between">
               <div>
-                <div className="flex items-center gap-3 mb-4 md:mb-6">
+                <div className="flex items-center gap-3 mb-3 md:mb-6">
                   <span className="px-3 py-1 bg-[#D4AF37]/10 text-[#D4AF37] font-mono text-[9px] uppercase tracking-widest rounded-full border border-[#D4AF37]/20">
                     {project.category}
                   </span>
                 </div>
                 
-                <h3 className="portfolio-card-title font-display text-white tracking-tighter mb-2 md:mb-4 leading-[1.1]">
+                <h3 className="portfolio-card-title font-display text-white tracking-tighter mb-1.5 md:mb-4 leading-[1.1]">
                   {project.title}
                 </h3>
                 
-                <p className="text-white/60 text-xs md:text-sm leading-relaxed max-w-sm mb-3 md:mb-6">
+                <p className="text-white/60 text-xs md:text-sm leading-relaxed max-w-sm mb-2 md:mb-6">
                   {project.desc}
                 </p>
 
-                <div className="grid grid-cols-2 gap-4 md:gap-8 py-3 md:py-6 border-t border-white/5">
+                <div className="grid grid-cols-2 gap-4 md:gap-8 py-2 md:py-6 border-t border-white/5">
                   <div>
                     <span className="block font-mono text-[8px] md:text-[9px] uppercase tracking-widest text-white/30 mb-1">Timeline</span>
                     <span className="font-display text-base md:text-lg text-white">2.5 Months</span>
@@ -127,7 +127,7 @@ export function PortfolioStack() {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between pt-4 border-t border-white/5">
+              <div className="flex items-center justify-between pt-3 border-t border-white/5">
                 <div className="flex items-center gap-4">
                   <div className="w-9 h-9 rounded-full bg-[#D4AF37] flex items-center justify-center font-display text-black text-xs font-bold">
                     {project.title[0]}
