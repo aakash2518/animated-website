@@ -128,11 +128,11 @@ export function Hero() {
 
   return (
     <section ref={root} className="relative h-[400vh] w-full bg-black">
-      <div ref={containerRef} className="sticky top-0 h-[85svh] md:h-svh w-full overflow-hidden grain">
+      <div ref={containerRef} className="sticky top-0 h-[88svh] md:h-svh w-full overflow-hidden grain">
         <canvas ref={canvasRef} className="absolute inset-0 h-full w-full object-cover opacity-70 will-change-transform" />
         <div className="absolute inset-0 bg-linear-to-b from-black/60 via-transparent to-black/80 pointer-events-none" />
 
-        <div className="relative z-10 flex h-full flex-col justify-between px-6 md:px-10 pt-32 pb-24">
+        <div className="relative z-10 flex h-full flex-col justify-between px-6 md:px-10 pt-28 md:pt-32 pb-20 md:pb-24">
           <div className="hero-location-bar flex justify-between items-start font-mono uppercase tracking-[0.25em] text-(--bone)/70">
             <span>Faridabad / India</span>
             <span className="text-right max-w-[18ch] hidden md:block text-xs">RoyalFinity Technologies — let&apos;s grow together</span>
