@@ -245,6 +245,13 @@ export const contact = {
   hours: "Mon — Sat · 10:00 — 19:00 IST",
 };
 
+export const social = {
+  whatsapp: "https://wa.me/919211816999",
+  facebook: "https://www.facebook.com/share/1EDe1gc4bf/?mibextid=wwXIfr",
+  instagram: "https://www.instagram.com/royalfinitytechnologies",
+  linkedin: "https://www.linkedin.com/company/royalfinitytechnologies/",
+};
+
 export const serviceDetails: Record<string, {
   badge: string;
   title: string;

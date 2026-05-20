@@ -18,10 +18,10 @@ export function Footer() {
   ];
 
   return (
-    <footer className="relative bg-black pt-32 pb-12 overflow-hidden border-t border-white/5">
+    <footer className="relative bg-black pt-32 pb-16 overflow-hidden border-t border-white/5">
 
       <div className="responsive-container relative z-20">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-y-12 gap-x-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-y-16 gap-x-12">
           
           {/* Column 1: Brand */}
           <div className="lg:col-span-1">
@@ -42,33 +42,33 @@ export function Footer() {
                 </span>
               </div>
             </Link>
-            <p className="text-white/50 text-[11px] leading-relaxed max-w-xs">
+            <p className="text-white/50 text-sm leading-loose max-w-xs mt-2">
               We create brands that communicate and connect with people to inspire them. We specialize in various creative and sustainable branding solutions such as Digital Marketing, Corporate Identity Design, Website Designing, and many more.
             </p>
           </div>
 
           {/* Column 2: Services */}
           <div>
-            <h4 className="font-display text-sm uppercase tracking-[0.2em] text-[#D4AF37] mb-8">Services</h4>
-            <ul className="space-y-4">
-              <li key="web"><Link href="/services/website-development" className="text-white/40 hover:text-white text-[11px] transition-colors">Website Development</Link></li>
-              <li key="app"><Link href="/services/mobile-apps" className="text-white/40 hover:text-white text-[11px] transition-colors">Mobile App Development</Link></li>
-              <li key="design"><Link href="/services/ui-ux-design" className="text-white/40 hover:text-white text-[11px] transition-colors">UI/UX Design</Link></li>
-              <li key="marketing"><Link href="/services/digital-marketing" className="text-white/40 hover:text-white text-[11px] transition-colors">Digital Marketing</Link></li>
-              <li key="seo"><Link href="/services/seo" className="text-white/40 hover:text-white text-[11px] transition-colors">SEO Optimization</Link></li>
-              <li key="ads"><Link href="/services/google-ads" className="text-white/40 hover:text-white text-[11px] transition-colors">Google Ads (PPC)</Link></li>
+            <h4 className="font-display text-base uppercase tracking-[0.2em] text-[#D4AF37] mb-10">Services</h4>
+            <ul className="space-y-5">
+              <li key="web"><Link href="/services/website-development" className="text-white/40 hover:text-white text-sm transition-colors">Website Development</Link></li>
+              <li key="app"><Link href="/services/mobile-apps" className="text-white/40 hover:text-white text-sm transition-colors">Mobile App Development</Link></li>
+              <li key="design"><Link href="/services/ui-ux-design" className="text-white/40 hover:text-white text-sm transition-colors">UI/UX Design</Link></li>
+              <li key="marketing"><Link href="/services/digital-marketing" className="text-white/40 hover:text-white text-sm transition-colors">Digital Marketing</Link></li>
+              <li key="seo"><Link href="/services/seo" className="text-white/40 hover:text-white text-sm transition-colors">SEO Optimization</Link></li>
+              <li key="ads"><Link href="/services/google-ads" className="text-white/40 hover:text-white text-sm transition-colors">Google Ads (PPC)</Link></li>
             </ul>
           </div>
 
           {/* Column 3: Quick Links */}
           <div>
-            <h4 className="font-display text-sm uppercase tracking-[0.2em] text-[#D4AF37] mb-8">Quick Links</h4>
-            <ul className="space-y-4">
+            <h4 className="font-display text-base uppercase tracking-[0.2em] text-[#D4AF37] mb-10">Quick Links</h4>
+            <ul className="space-y-5">
               {quickLinks.map((l) => (
                 <li key={l.label}>
                   <Link 
                     href={l.to} 
-                    className="text-white/40 hover:text-white text-[11px] transition-colors"
+                    className="text-white/40 hover:text-white text-sm transition-colors"
                   >
                     {l.label}
                   </Link>
@@ -79,23 +79,23 @@ export function Footer() {
 
           {/* Column 4: Contact */}
           <div>
-            <h4 className="font-display text-sm uppercase tracking-[0.2em] text-[#D4AF37] mb-8">Get in Touch</h4>
-            <div className="space-y-6">
-              <div className="flex gap-3">
-                <MapPin size={14} className="text-[#D4AF37] shrink-0" />
-                <p className="text-white/40 text-[11px] leading-relaxed">
+            <h4 className="font-display text-base uppercase tracking-[0.2em] text-[#D4AF37] mb-10">Get in Touch</h4>
+            <div className="space-y-8">
+              <div className="flex gap-4">
+                <MapPin size={16} className="text-[#D4AF37] shrink-0 mt-0.5" />
+                <p className="text-white/40 text-sm leading-relaxed">
                   {contact.address}
                 </p>
               </div>
-              <div className="flex items-center gap-3">
-                <Mail size={14} className="text-[#D4AF37] shrink-0" />
-                <a href={`mailto:${contact.email}`} className="text-white/40 hover:text-white text-[11px]">
+              <div className="flex items-center gap-4">
+                <Mail size={16} className="text-[#D4AF37] shrink-0" />
+                <a href={`mailto:${contact.email}`} className="text-white/40 hover:text-white text-sm">
                   {contact.email}
                 </a>
               </div>
-              <div className="flex items-center gap-3">
-                <Phone size={14} className="text-[#D4AF37] shrink-0" />
-                <a href={`tel:${contact.phone}`} className="text-white/40 hover:text-white text-[11px]">
+              <div className="flex items-center gap-4">
+                <Phone size={16} className="text-[#D4AF37] shrink-0" />
+                <a href={`tel:${contact.phone}`} className="text-white/40 hover:text-white text-sm">
                   {contact.phone}
                 </a>
               </div>
@@ -117,11 +117,11 @@ export function Footer() {
         </div>
 
         {/* Footer Bottom */}
-        <div className="mt-24 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-white/30">
+        <div className="mt-28 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+          <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40">
             © 2026 RoyalFinity Technologies. All rights reserved.
           </p>
-          <div className="flex gap-8 text-[10px] font-mono uppercase tracking-[0.25em] text-white/30">
+          <div className="flex gap-8 text-xs font-mono uppercase tracking-[0.2em] text-white/40">
             <Link href="/" className="hover:text-[#D4AF37] transition-colors">Privacy Policy</Link>
             <Link href="/" className="hover:text-[#D4AF37] transition-colors">Terms of Service</Link>
           </div>

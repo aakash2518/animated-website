@@ -28,7 +28,7 @@ export function Teams() {
   return (
     <section className="pt-24 md:pt-40 pb-24 px-6 md:px-12 lg:px-24 bg-black overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <h2 className="font-display text-4xl md:text-5xl tracking-tighter text-[var(--bone)] mb-16 md:mb-24">
+        <h2 className="section-title tracking-tighter text-[var(--bone)] mb-16 md:mb-24">
           Our Team
         </h2>
 

@@ -15,13 +15,13 @@ export function ImpactText() {
           >
             <h2 
               className="font-display leading-[1.1] tracking-tighter text-white"
-              style={{ fontSize: "clamp(1.4rem, 3.5vw, 2.5rem)" }}
+              style={{ fontSize: "clamp(1.8rem, 4.5vw, 3.2rem)" }}
             >
               We turn ideas into <br />
               <span className="text-[var(--gold)] italic">digital impact —</span>
             </h2>
           </motion.div>
-
+ 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -32,25 +32,25 @@ export function ImpactText() {
             <div className="max-w-2xl">
               <p 
                 className="font-sans text-white/90 leading-[1.2] tracking-tight uppercase"
-                style={{ fontSize: "clamp(0.85rem, 1.8vw, 1.3rem)" }}
+                style={{ fontSize: "clamp(1rem, 2.2vw, 1.6rem)" }}
               >
                 from brand to product <br />
                 to growth,
               </p>
               <p 
                 className="font-mono text-[var(--gold)] mt-4 tracking-[0.2em] uppercase"
-                style={{ fontSize: "clamp(0.55rem, 0.8vw, 0.75rem)" }}
+                style={{ fontSize: "clamp(0.7rem, 1.2vw, 0.95rem)" }}
               >
                 one stack, one team, one outcome.
               </p>
             </div>
-
+ 
             <div className="space-y-6">
               <div className="space-y-1">
-                <p className="font-mono text-[8px] uppercase tracking-widest text-white/30">( Why RoyalFinity Technologies )</p>
+                <p className="font-mono text-[10px] md:text-[11px] uppercase tracking-widest text-white/30">( Why RoyalFinity Technologies )</p>
                 <p 
                   className="font-display text-white italic"
-                  style={{ fontSize: "clamp(1rem, 2vw, 1.5rem)" }}
+                  style={{ fontSize: "clamp(1.2rem, 2.5vw, 1.85rem)" }}
                 >
                   Understanding your business comes first.
                 </p>
@@ -58,7 +58,7 @@ export function ImpactText() {
               <div className="space-y-1">
                 <p 
                   className="font-display text-[var(--gold)]"
-                  style={{ fontSize: "clamp(1rem, 2vw, 1.5rem)" }}
+                  style={{ fontSize: "clamp(1.2rem, 2.5vw, 1.85rem)" }}
                 >
                   Results that last come second.
                 </p>

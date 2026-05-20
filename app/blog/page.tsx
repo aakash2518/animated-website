@@ -25,6 +25,8 @@ export default function BlogPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
+  const [visibleCount, setVisibleCount] = useState(4);
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
     fetch('/api/blogs')
@@ -46,7 +48,7 @@ export default function BlogPage() {
         ease: "expo.out",
       });
 
-      // Stagger reveal posts
+      // Stagger reveal first set of posts
       gsap.from(".blog-card", {
         y: 40,
         opacity: 0,
@@ -63,6 +65,23 @@ export default function BlogPage() {
     return () => ctx.revert();
   }, [loading]);
 
+  useEffect(() => {
+    if (loading) return;
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    // Animate only the newly revealed cards
+    const cards = document.querySelectorAll(".blog-card");
+    const newCards = Array.from(cards).slice(visibleCount - 4, visibleCount);
+    
+    gsap.fromTo(
+      newCards,
+      { y: 30, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power2.out" }
+    );
+  }, [visibleCount, loading]);
+
   return (
     <main ref={containerRef} className="relative pt-32 bg-black min-h-screen">
       {/* Header */}
@@ -78,9 +97,9 @@ export default function BlogPage() {
       </section>
 
       {/* Blog Grid */}
-      <section className="px-6 md:px-10 pb-32 blog-grid">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-20">
-          {blogPosts.map((post) => (
+      <section className="px-6 md:px-10 pb-16 blog-grid">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
+          {blogPosts.slice(0, visibleCount).map((post) => (
             <Link 
               key={post.slug} 
               href={`/blog/${post.slug}`}
@@ -108,11 +127,11 @@ export default function BlogPage() {
                   <span>{post.readTime}</span>
                 </div>
                 
-                <h2 className="font-display text-2xl md:text-3xl tracking-tight text-white group-hover:text-[var(--gold)] transition-colors duration-500">
+                <h2 className="font-display text-lg md:text-xl tracking-tight text-white group-hover:text-[var(--gold)] transition-colors duration-500">
                   {post.title}
                 </h2>
                 
-                <p className="text-white/50 text-sm leading-relaxed max-w-md">
+                <p className="text-white/50 text-xs leading-relaxed max-w-md">
                   {post.excerpt}
                 </p>
 
@@ -124,6 +143,20 @@ export default function BlogPage() {
             </Link>
           ))}
         </div>
+
+        {/* Load More Button */}
+        {visibleCount < blogPosts.length && (
+          <div className="mt-20 flex justify-center pb-12">
+            <button 
+              onClick={() => setVisibleCount(prev => prev + 4)}
+              className="group relative px-8 py-4 bg-transparent border border-white/10 hover:border-[var(--gold)]/40 rounded-full font-mono text-[10px] uppercase tracking-widest text-[var(--gold)] hover:text-black transition-all duration-500 overflow-hidden cursor-pointer"
+              data-cursor
+            >
+              <span className="relative z-10 transition-colors duration-500">Load More Articles</span>
+              <div className="absolute inset-0 bg-[var(--gold)] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-expo z-0" />
+            </button>
+          </div>
+        )}
       </section>
 
       <Footer />

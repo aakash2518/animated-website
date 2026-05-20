@@ -29,10 +29,7 @@ export function FAQ() {
         >
           (FAQ)
         </p>
-        <h2 
-          className="font-display tracking-tight leading-[1.1] max-w-4xl"
-          style={{ fontSize: "clamp(1.5rem, 4vw, 3rem)" }}
-        >
+        <h2 className="section-title tracking-tight leading-[1.1] max-w-4xl">
           Quick answers, <span className="italic text-[var(--ember)]">no fluff.</span>
         </h2>
       </div>

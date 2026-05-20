@@ -60,14 +60,13 @@ export function Nav() {
   return (
     <>
     <header
-      className={`fixed top-0 left-0 right-0 z-[999] transition-all duration-500 ${
+      className={`nav-header fixed top-0 left-0 right-0 z-999 transition-all duration-500 ${
         isScrolled ? "bg-[#0A0A0A]/95 backdrop-blur-md py-3 border-b border-white/5 shadow-2xl" : "bg-transparent py-5"
-      } ${isOpen ? "!bg-[#0A0A0A] !py-4" : ""}`}
-      style={{ padding: `clamp(0.75rem, 2vw, 1.25rem) clamp(1rem, 4vw, 3rem)` }}
+      } ${isOpen ? "bg-[#0A0A0A]! py-4!" : ""}`}
     >
-      <div className="flex items-center justify-between w-full max-w-[1400px] mx-auto">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 group relative z-50" onClick={() => setIsOpen(false)}>
+      <div className="relative flex items-center justify-between w-full px-6 md:px-10">
+        {/* Logo — left aligned */}
+        <Link href="/" className="flex items-center gap-3 group relative z-50 shrink-0" onClick={() => setIsOpen(false)}>
           <Image
             src={logo}
             alt="RoyalFinity"
@@ -75,14 +74,13 @@ export function Nav() {
             height={64}
             className="w-8 h-8 object-contain transition-transform duration-500 group-hover:scale-110"
           />
-          <span className={`font-display tracking-tight text-[var(--gold)] ${isOpen ? "hidden" : "hidden sm:block"}`} style={{ fontSize: "clamp(0.9rem, 2.5vw, 1.1rem)" }}>
+          <span className={`nav-logo-text font-display tracking-tight text-(--gold) ${isOpen ? "hidden" : "hidden sm:block"}`}>
             RoyalFinity Technologies
           </span>
         </Link>
 
         <nav 
-          className={`nav-desktop hidden lg:flex items-center gap-6 xl:gap-8 uppercase tracking-[0.2em] text-[var(--bone)] font-mono ${isOpen ? "hidden" : "flex"}`}
-          style={{ fontSize: "clamp(0.7rem, 1.5vw, 0.85rem)" }}
+          className={`nav-links nav-desktop hidden lg:flex items-center gap-6 xl:gap-8 uppercase tracking-[0.2em] text-(--bone) font-mono absolute left-1/2 -translate-x-1/2`}
         >
           {links.map((l) => (
             <div
@@ -93,7 +91,7 @@ export function Nav() {
             >
               <Link
                 href={l.to}
-                className={`hover:text-[var(--ember)] transition-colors flex items-center gap-1 py-4 ${pathname === l.to ? "text-[var(--ember)]" : ""}`}
+                className={`hover:text-(--ember) transition-colors flex items-center gap-1 py-4 ${pathname === l.to ? "text-(--ember)" : ""}`}
               >
                 {l.label}
                 {l.hasSubmenu && (
@@ -113,7 +111,7 @@ export function Nav() {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
                       transition={{ duration: 0.2, ease: "easeOut" }}
-                      className="absolute top-full left-0 w-64 bg-[#0B0B0B] border border-[#D4AF37]/30 rounded-xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-[110]"
+                      className="absolute top-full left-0 w-64 bg-[#0B0B0B] border border-[#D4AF37]/30 rounded-xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-110"
                     >
                       <div className="flex flex-col py-2">
                         {l.submenu.map((item) => (
@@ -121,7 +119,7 @@ export function Nav() {
                             key={item.slug}
                             type="button"
                             onClick={() => goToService(item.slug)}
-                            className="w-full text-left px-6 py-4 text-[10px] tracking-[0.1em] text-white/70 hover:text-[#D4AF37] hover:bg-white/5 transition-all duration-300 border-b border-white/5 last:border-0 cursor-pointer"
+                            className="w-full text-left px-6 py-4 text-[10px] tracking-widest text-white/70 hover:text-[#D4AF37] hover:bg-white/5 transition-all duration-300 border-b border-white/5 last:border-0 cursor-pointer"
                           >
                             {item.label}
                           </button>
@@ -138,17 +136,17 @@ export function Nav() {
         {/* Phone (Desktop) */}
         <a
           href="tel:+919211816999"
-          className="nav-desktop hidden md:block uppercase tracking-[0.2em] text-[var(--bone)] font-mono"
-          style={{ fontSize: "clamp(0.7rem, 1.5vw, 0.85rem)" }}
+          className="nav-links nav-desktop hidden md:block uppercase tracking-[0.2em] text-(--bone) font-mono"
         >
           (+91 92118 16999)
         </a>
 
         {/* Mobile Toggle */}
         <button
-          className="nav-mobile-toggle z-[60] p-2 text-[var(--bone)] hover:text-[var(--gold)] transition-colors relative"
+          className="nav-mobile-toggle z-60 p-2 text-(--bone) hover:text-(--gold) transition-colors relative"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
+          title="Toggle menu"
           type="button"
         >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
@@ -165,7 +163,7 @@ export function Nav() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/90 backdrop-blur-md z-[1000] lg:hidden"
+            className="fixed inset-0 bg-black/90 backdrop-blur-md z-1000 lg:hidden"
             onClick={() => setIsOpen(false)}
           />
           <motion.div
@@ -173,7 +171,7 @@ export function Nav() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed top-0 right-0 bottom-0 w-[85%] max-w-[400px] bg-[#0A0A0A] z-[1001] flex flex-col lg:hidden border-l border-white/10"
+            className="fixed top-0 right-0 bottom-0 w-[85%] max-w-[400px] bg-[#0A0A0A] z-1001 flex flex-col lg:hidden border-l border-white/10"
           >
             {/* Menu Header */}
             <div className="flex items-center justify-between p-6 border-b border-white/5">
@@ -186,21 +184,23 @@ export function Nav() {
               />
               <button 
                 onClick={() => setIsOpen(false)}
-                className="p-2 text-white/70 hover:text-[var(--gold)] transition-colors"
+                className="p-2 text-white/70 hover:text-(--gold) transition-colors"
+                aria-label="Close menu"
+                title="Close menu"
+                type="button"
               >
                 <X size={24} />
               </button>
             </div>
 
-            {/* Links List */}
             <nav className="flex flex-col flex-1 overflow-y-auto">
-              {links.map((l, i) => (
+              {links.map((l) => (
                 <div key={l.label} className="border-b border-white/5">
                   <div className="flex items-center justify-between">
                     <Link
                       href={l.to}
                       onClick={() => !l.hasSubmenu && setIsOpen(false)}
-                      className={`flex-1 py-6 px-8 text-lg font-sans tracking-wide transition-colors ${pathname === l.to ? "text-[var(--gold)]" : "text-white/80 hover:text-white"}`}
+                      className={`flex-1 py-6 px-8 text-lg font-sans tracking-wide transition-colors ${pathname === l.to ? "text-(--gold)" : "text-white/80 hover:text-white"}`}
                     >
                       {l.label}
                     </Link>
@@ -222,14 +222,14 @@ export function Nav() {
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: "auto", opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
-                          className="bg-white/[0.02] overflow-hidden"
+                          className="bg-white/2 overflow-hidden"
                         >
                           <div className="flex flex-col py-2 px-8 gap-4 pb-6">
                             {l.submenu.map((item) => (
                               <button
                                 key={item.slug}
                                 onClick={() => goToService(item.slug)}
-                                className="text-left text-sm text-white/40 hover:text-[var(--gold)] transition-colors py-1"
+                                className="text-left text-sm text-white/40 hover:text-(--gold) transition-colors py-1"
                               >
                                 {item.label}
                               </button>
@@ -245,7 +245,7 @@ export function Nav() {
 
             {/* Bottom Info */}
             <div className="p-8 border-t border-white/5 bg-black/20">
-              <a href="tel:+919211816999" className="text-[var(--gold)] font-mono text-xs tracking-widest">
+              <a href="tel:+919211816999" className="text-(--gold) font-mono text-xs tracking-widest">
                 (+91 92118 16999)
               </a>
               <p className="text-white/20 text-[10px] uppercase tracking-widest mt-2">

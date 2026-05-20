@@ -49,32 +49,32 @@ function ServiceCard({ service }: { service: typeof services[0] }) {
         <div className="absolute top-8 left-8 font-mono text-[9px] uppercase tracking-[0.3em] text-white/30 z-10">
           ({service.n})
         </div>
- 
+
         {/* Content Grid */}
         <div className="relative z-10 h-full flex flex-col md:flex-row items-center p-8 md:p-14 gap-8 md:gap-10">
           {/* Text content */}
           <div className="flex-1 text-center md:text-left mt-8 md:mt-0">
-            <h3 
+            <h3
               className="font-display tracking-tighter mb-4 leading-[1.1] text-white"
               style={{ fontSize: "clamp(1.5rem, 5vw, 2.5rem)" }}
             >
               {service.title}
             </h3>
- 
-            <p 
+
+            <p
               className="text-white/40 leading-relaxed max-w-sm mx-auto md:mx-0"
               style={{ fontSize: "clamp(0.95rem, 3vw, 1.1rem)" }}
             >
               {service.tagline}
             </p>
           </div>
- 
+
           {/* Image */}
           <div className="flex flex-1 items-center justify-center h-full w-full max-h-[180px] md:max-h-none">
             {imageUrl && (
               <div className="relative w-4/5 h-4/5 md:w-full md:h-full transform transition-all duration-700 group-hover:scale-105 group-hover:rotate-3">
-                <Image 
-                  src={imageUrl} 
+                <Image
+                  src={imageUrl}
                   alt={service.title}
                   fill
                   className="object-contain"
@@ -97,10 +97,10 @@ export function ServicesHorizontal() {
   const track = useRef<HTMLDivElement>(null);
 
   // Filter only the required services
-  const filteredServices = services.filter(service => 
+  const filteredServices = services.filter(service =>
     [
       "Website Development",
-      "Native Mobile Apps", 
+      "Native Mobile Apps",
       "Digital Marketing",
       "Social Media Marketing",
       "Search Engine Optimization",
@@ -109,32 +109,32 @@ export function ServicesHorizontal() {
   );
 
   return (
-    <section id="services" className="relative py-24 md:py-32 bg-black overflow-hidden">
-      <div className="px-6 md:px-10 mb-12 flex justify-between items-end font-mono uppercase tracking-[0.25em] text-[var(--bone)]/70" style={{ fontSize: "clamp(0.65rem, 1.5vw, 0.8rem)" }}>
+    <section id="services" className="relative py-24 md:py-32 bg-black overflow-hidden lg:px-16">
+      <div className="px-5 md:px-10  mb-12 flex justify-between items-end font-mono uppercase tracking-[0.25em] text-[var(--bone)]/70" style={{ fontSize: "clamp(0.65rem, 1.5vw, 0.8rem)" }}>
         <div>
           <span className="block mb-2">(What we do)</span>
-          <h2 className="font-display tracking-tight text-[var(--bone)]" style={{ fontSize: "clamp(2rem, 6vw, 4.5rem)" }}>Services</h2>
+          <h2 className="section-title tracking-tight text-[var(--bone)]">Services</h2>
         </div>
         <span className="hidden md:block">↔ Scroll horizontally</span>
       </div>
 
-      <div 
-        ref={track} 
-        className="flex items-center gap-8 md:gap-12 px-6 md:px-10 overflow-x-auto pb-8 scrollbar-hide snap-x snap-mandatory"
+      <div
+        ref={track}
+        className="flex items-start gap-8 md:gap-12 px-5 md:px-10  overflow-x-auto pb-8 scrollbar-hide snap-x snap-mandatory"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
-        <div className="shrink-0 w-full md:w-[45vw] lg:w-[35vw] snap-start pr-8 mb-12 md:mb-0 hidden md:block">
-          <p className="font-display leading-[1] tracking-tight" style={{ fontSize: "clamp(2rem, 6vw, 4rem)" }}>
-            Struggling <span className="text-[var(--ember)] italic">to grow</span>
+        <div className="shrink-0 w-full md:w-[45vw] lg:w-[35vw] snap-start pr-8 mb-12 md:mb-0 hidden  md:block self-start">
+          <p className="font-display leading-[1.1] tracking-tight" style={{ fontSize: "clamp(2rem, 6vw, 4rem)" }}>
+            Struggling <span className="text-[var(--gold)] italic">to grow</span>
           </p>
-          <p className="font-display leading-[1] tracking-tight" style={{ fontSize: "clamp(2rem, 6vw, 4rem)" }}>
+          <p className="font-display leading-[1.1] tracking-tight mt-3 md:mt-4" style={{ fontSize: "clamp(2rem, 6vw, 4rem)" }}>
             your business online?
           </p>
-          <p className="font-display leading-[1] tracking-tight mt-4 md:mt-6" style={{ fontSize: "clamp(2rem, 6vw, 4rem)" }}>
-            <span className="text-[var(--ember)]">We fix that.</span>
+          <p className="font-display leading-[1.1] tracking-tight mt-6 md:mt-8" style={{ fontSize: "clamp(2rem, 6vw, 4rem)" }}>
+            <span className="text-[var(--gold)]">We fix that.</span>
           </p>
-          <p 
-            className="mt-6 md:mt-8 max-w-md text-[var(--bone)]/60 leading-relaxed"
+          <p
+            className="mt-8 md:mt-10 max-w-md text-[var(--bone)]/60 leading-relaxed"
             style={{ fontSize: "clamp(0.875rem, 2.5vw, 1.05rem)" }}
           >
             Full-stack digital services engineered to move real metrics — from websites and apps to marketing and automation.
@@ -146,7 +146,7 @@ export function ServicesHorizontal() {
             <ServiceCard service={service} />
           </div>
         ))}
-        
+
         {/* Spacer for end of scroll */}
         <div className="shrink-0 w-12 md:w-20 h-1" />
       </div>

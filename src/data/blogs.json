@@ -25,5 +25,41 @@
     "excerpt": "Why traditional branding is failing and how to build a brand that thrives online.",
     "readTime": "6 min read",
     "img": "/assets/p5.png"
+  },
+  {
+    "slug": "ai-automation-business-growth",
+    "title": "How AI Automation Is Reshaping Business Growth",
+    "date": "April 05, 2026",
+    "category": "AI & Automation",
+    "excerpt": "From lead generation to customer support, AI tools are transforming how modern businesses operate and scale.",
+    "readTime": "9 min read",
+    "img": "/assets/p2.png"
+  },
+  {
+    "slug": "mobile-first-design-principles",
+    "title": "Mobile-First Design: Principles That Actually Work",
+    "date": "March 28, 2026",
+    "category": "UI/UX Design",
+    "excerpt": "Designing for mobile is no longer optional. Here are the core principles that separate great mobile experiences from mediocre ones.",
+    "readTime": "7 min read",
+    "img": "/assets/p4.png"
+  },
+  {
+    "slug": "seo-strategies-2026",
+    "title": "SEO Strategies That Are Winning in 2026",
+    "date": "March 18, 2026",
+    "category": "Digital Marketing",
+    "excerpt": "Search algorithms have evolved dramatically. Discover the tactics that are driving real organic traffic today.",
+    "readTime": "10 min read",
+    "img": "/assets/p6.png"
+  },
+  {
+    "slug": "react-server-components-deep-dive",
+    "title": "React Server Components: A Practical Deep Dive",
+    "date": "March 08, 2026",
+    "category": "Web Development",
+    "excerpt": "Server Components change how we think about rendering. This guide breaks down when and how to use them effectively.",
+    "readTime": "11 min read",
+    "img": "/assets/p1.png"
   }
 ]

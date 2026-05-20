@@ -70,10 +70,7 @@ export default function AboutPage() {
           </motion.div>
           <div className="space-y-12">
             <div className="space-y-6">
-              <h2 
-                className="font-display tracking-tight"
-                style={{ fontSize: "clamp(1.8rem, 4vw, 3.5rem)" }}
-              >
+              <h2 className="section-title tracking-tight">
                 Empowering Businesses Through Technology
               </h2>
               <p className="text-white/50 leading-relaxed">
@@ -93,10 +90,7 @@ export default function AboutPage() {
       {/* Values Grid */}
       <section className="py-32 px-6 md:px-20">
         <div className="max-w-7xl mx-auto">
-          <h2 
-            className="mb-20 text-center tracking-tight font-display"
-            style={{ fontSize: "clamp(2rem, 5vw, 4rem)" }}
-          >
+          <h2 className="section-title mb-20 text-center tracking-tight">
             What <span className="italic text-[var(--gold)]">Drives Us</span> Forward
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

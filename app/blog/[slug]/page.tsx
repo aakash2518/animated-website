@@ -6,6 +6,7 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { ShareButton } from "@/components/ShareButton";
 
 interface BlogPost {
   slug: string;
@@ -55,6 +56,14 @@ export default function BlogPostPage() {
           <h1 className="font-display text-4xl md:text-7xl tracking-tighter leading-tight">
             {post.title}
           </h1>
+
+          {/* Share */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4 font-mono text-[10px] uppercase tracking-widest text-white/30">
+              <span>{post.readTime}</span>
+            </div>
+            <ShareButton title={post.title} />
+          </div>
 
           <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl border border-white/10">
             <Image
