@@ -127,17 +127,7 @@ export function PortfolioStack() {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between pt-3 border-t border-white/5">
-                <div className="flex items-center gap-4">
-                  <div className="w-9 h-9 rounded-full bg-[#D4AF37] flex items-center justify-center font-display text-black text-xs font-bold">
-                    {project.title[0]}
-                  </div>
-                  <div>
-                    <span className="block text-white text-[10px] md:text-xs font-semibold">Project Lead</span>
-                    <span className="block text-white/40 text-[9px] md:text-[10px]">RoyalFinity Team</span>
-                  </div>
-                </div>
-                
+              <div className="flex items-center justify-end pt-3 border-t border-white/5">
                 <button
                   type="button"
                   title="View project"
