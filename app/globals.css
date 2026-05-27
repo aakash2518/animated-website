@@ -172,6 +172,8 @@
   .review-float {
     opacity: 0;
     animation: reviewFloat 6s ease-in-out infinite;
+    will-change: transform;
+    contain: layout style;
   }
   .review-float-active {
     opacity: 1;

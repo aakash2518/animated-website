@@ -18,23 +18,26 @@ export function Hero() {
   const frames = useRef<HTMLImageElement[]>([]);
   const [imagesLoaded, setImagesLoaded] = useState(false);
 
-  // Preload images
+  // Preload images — start animation as soon as first frame is ready
   useEffect(() => {
     let loadedCount = 0;
-    const images: HTMLImageElement[] = [];
+    const images: HTMLImageElement[] = new Array(frameCount);
 
     for (let i = 0; i < frameCount; i++) {
       const img = new Image();
       img.src = `/assets/hero/frame_${i.toString().padStart(2, "0")}_delay-0.041s.webp`;
       img.onload = () => {
         loadedCount++;
-        if (loadedCount === frameCount) {
+        // Start animation as soon as frame 0 is ready
+        if (i === 0 && !imagesLoaded) {
           setImagesLoaded(true);
         }
       };
-      images.push(img);
+      img.onerror = () => { loadedCount++; };
+      images[i] = img;
     }
     frames.current = images;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -45,8 +48,18 @@ export function Hero() {
     if (!context) return;
 
     const render = (index: number) => {
-      const img = frames.current[index];
-      if (!img?.complete) return;
+      // Find the nearest loaded frame if this one isn't ready
+      let img = frames.current[index];
+      if (!img?.complete || !img.naturalWidth) {
+        // Walk backwards to find a loaded frame
+        for (let i = index - 1; i >= 0; i--) {
+          if (frames.current[i]?.complete && frames.current[i].naturalWidth) {
+            img = frames.current[i];
+            break;
+          }
+        }
+      }
+      if (!img?.complete || !img.naturalWidth) return;
 
       const canvasWidth = canvas.width;
       const canvasHeight = canvas.height;
@@ -88,8 +101,9 @@ export function Hero() {
           trigger: root.current,
           start: "top top",
           end: "bottom bottom",
-          scrub: 0.2,
+          scrub: 0.5,
           pin: containerRef.current,
+          anticipatePin: 0,
         },
       });
 

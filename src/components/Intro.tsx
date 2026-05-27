@@ -42,13 +42,13 @@ export function Intro({ onComplete }: IntroProps) {
     }
   }, [isMobile, hasMounted]);
 
-  // Fallback: Auto-complete after 10 seconds if video doesn't end
+  // Fallback: Auto-complete after 6 seconds if video doesn't end
   useEffect(() => {
     const fallbackTimer = setTimeout(() => {
       if (!videoError) {
         onComplete();
       }
-    }, 10000);
+    }, 6000);
 
     return () => clearTimeout(fallbackTimer);
   }, [onComplete, videoError]);
@@ -73,42 +73,21 @@ export function Intro({ onComplete }: IntroProps) {
         animate={{ opacity: 1 }}
         exit={{ 
           opacity: 0,
-          scale: 1.1,
-          filter: "blur(30px)",
+          scale: 1.05,
           transition: { 
-            duration: 0.8, 
+            duration: 0.6, 
             ease: [0.76, 0, 0.24, 1] 
           }
         }}
         className="fixed inset-0 z-[9999] bg-black flex items-center justify-center overflow-hidden"
       >
-        {/* Ambient Background Glow - Anti-gravity effect */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          <motion.div 
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100vw] bg-[var(--ember)]/10 blur-[200px] rounded-full"
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.3, 0.5, 0.3],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
+        {/* Ambient Background Glow - static, no continuous animation */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <div 
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-screen h-screen bg-(--ember)/8 blur-[180px] rounded-full opacity-40"
           />
-          <motion.div 
-            className="absolute top-1/4 right-1/4 w-[60vw] h-[60vw] bg-[var(--gold)]/5 blur-[150px] rounded-full"
-            animate={{
-              scale: [1, 1.3, 1],
-              opacity: [0.2, 0.4, 0.2],
-              x: [0, 50, 0],
-              y: [0, -50, 0],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
+          <div 
+            className="absolute top-1/4 right-1/4 w-[60vw] h-[60vw] bg-(--gold)/4 blur-[120px] rounded-full opacity-20"
           />
         </div>
 

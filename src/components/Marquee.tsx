@@ -1,14 +1,32 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 export function Marquee() {
   const [mounted, setMounted] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Pause marquee animation when off-screen to save GPU cycles
+  useEffect(() => {
+    if (!mounted || !sectionRef.current || !trackRef.current) return;
+    const track = trackRef.current;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        track.style.animationPlayState = entry.isIntersecting ? "running" : "paused";
+      },
+      { threshold: 0 }
+    );
+
+    observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, [mounted]);
 
   const logos = [
     { name: "Python", url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
@@ -50,8 +68,8 @@ export function Marquee() {
   );
 
   return (
-    <section className="border-y border-border py-16 md:py-24 overflow-hidden bg-background/50 backdrop-blur-sm relative">
-      <div className="marquee-track flex will-change-transform">
+    <section ref={sectionRef} className="border-y border-border py-16 md:py-24 overflow-hidden bg-background/50 backdrop-blur-sm relative" style={{ contain: "layout style" }}>
+      <div ref={trackRef} className="marquee-track flex will-change-transform">
         {row}
         {row}
         {row}

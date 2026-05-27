@@ -22,14 +22,16 @@ export function PortfolioStack() {
         trigger: sectionRef.current,
         start: "top top",
         end: () => `+=${cards.length * 100}%`,
-        scrub: 0.2,
+        scrub: 0.5,
         pin: true,
-        anticipatePin: 1,
+        anticipatePin: 0,
+        onLeave: () => cards.forEach(c => (c.style.willChange = "auto")),
+        onEnterBack: () => cards.forEach(c => (c.style.willChange = "transform, opacity")),
       }
     });
 
     cards.forEach((card, i) => {
-      // Add hardware acceleration only during animation
+      // Hardware acceleration during animation
       gsap.set(card, { willChange: "transform, opacity" });
       
       if (i > 0) {
@@ -45,12 +47,6 @@ export function PortfolioStack() {
           ease: "none",
         }, i - 0.5);
       }
-    });
-
-    // Clean up willChange after scroll ends to free GPU memory
-    ScrollTrigger.getAll().forEach(st => {
-      st.vars.onLeave = () => cards.forEach(c => (c.style.willChange = "auto"));
-      st.vars.onEnterBack = () => cards.forEach(c => (c.style.willChange = "transform, opacity"));
     });
 
     return () => {
